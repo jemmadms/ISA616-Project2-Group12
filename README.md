@@ -1,12 +1,10 @@
 # Overview of the Repository
 
-The purpose of this repository is for Jemma Marcus-Shi and Linjie Zhu  interact with GitHub to access the files for our second project in ISA 616.  Below, we include details about our client, client job, and how we are going to analyze the data.
+The purpose of this repository is for Jemma Marcus-Shi and Linjie Zhu to interact with GitHub to access the files for our second project in ISA 616. 
 
 ## Project Overview
 
-Annually, the FSB conducts a senior survey of graduates to learn of their employment status.  In addition, information is verified using LinkedIn and employer survey information.  The data you are provided ('FSB_BI_Survey_2019_2021.rds') contains data on graduates for 2019, 2020, and 2021.  The data are merged from two sources:  the senior survey, and data from the Miami University database.  
-
-The data are anonymized, however it is possible that if you look hard enough, you can identify students.  You are bound, ethically not to do so.  It is a strict ethical code that you will not discuss individual data points with ANYONE except for me and your team.  Failure to comply with this code of ethics will result in a failing grade in the course.  
+The collaborators on this project will be using the FSB data on the employment status of graduates in order to find information about geographic trends (Question #1 in the project). They will be determining where students are going, what the salary differentials are by region, what jobs are dominant in each region, and what the top 3-5 job categories are in the cities where graduates most commonly work. In addition, the collaborators will analyze what the risks and opportunities are for placement in each city and/or region.
 
 ## Data Sources
 
