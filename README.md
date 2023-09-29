@@ -4,7 +4,11 @@ The purpose of this repository is for Jemma Marcus-Shi and Linjie Zhu to interac
 
 ## Project Overview
 
-The collaborators on this project will be using the FSB data on the employment status of graduates in order to find information about geographic trends (Question #1 in the project). They will be determining where students are going, what the salary differentials are by region, what jobs are dominant in each region, and what the top 3-5 job categories are in the cities where graduates most commonly work. In addition, the collaborators will analyze what the risks and opportunities are for placement in each city and/or region.
+The collaborators on this project will be using the FSB data on the employment status of graduates in order to find information about geographic trends (Question #1 in the project). They will be determining where students are going, what the salary differentials are by region, what jobs are dominant in each region, and what the top 3-5 job categories are in the cities where graduates most commonly work. In addition, the collaborators will analyze what the risks and opportunities are for placement in each city and/or region. The results of the analysis will be represented visually by graphs and maps as well as written explanation.
+
+The client jobs for this project are to improve student development, develop external relationships for FSB, and influence job types and salary levels offered for FSB students. The client is struggling with finding trends in where students are going to work after graduation, the difference in student salaries by region, and the dominant fields in each region. We hope to shed light on this by making a map of the US that separates regions by Northeast/Midwest/South/West as well a map going into more detail by city in the state of Ohio and adjacent cities popular with FSB graduates. Another map will be created to display to our client the salary ranges for each region, and the job types that appear most frequently in each region.
+
+By understanding the data, the client can understand how each region affects students' job types, understand which region is most likely to give FSB students job opportunities and the quality of those job opportunities, and how each region affects student salaries.
 
 ## Data Sources
 
