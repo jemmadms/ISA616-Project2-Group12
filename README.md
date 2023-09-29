@@ -1,6 +1,6 @@
 # Overview of the Repository
 
-The purpose of this repository is to interact with GitHub to access the files for our second project in ISA 616.  Below, I also include details about GitHub to help you in working in this environment.
+The purpose of this repository is for Jemma Marcus-Shi and Linjie Zhu  interact with GitHub to access the files for our second project in ISA 616.  Below, I also include details about GitHub to help you in working in this environment.
 
 ## Project Overview
 
