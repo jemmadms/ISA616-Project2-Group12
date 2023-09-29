@@ -1,7 +1,6 @@
 # Overview of the Repository
 
-The purpose of this repository is for Jemma Marcus-Shi and Linjie Zhu  interact with GitHub to access the files for our second project in ISA 616.  Below, I also include details about GitHub to help you in working in this environment.
-
+The purpose of this repository is for Jemma Marcus-Shi and Linjie Zhu  interact with GitHub to access the files for our second project in ISA 616.  Below, we include details about our client, client job, and how we are going to analyze the data.
 ## Project Overview
 
 Annually, the FSB conducts a senior survey of graduates to learn of their employment status.  In addition, information is verified using LinkedIn and employer survey information.  The data you are provided ('FSB_BI_Survey_2019_2021.rds') contains data on graduates for 2019, 2020, and 2021.  The data are merged from two sources:  the senior survey, and data from the Miami University database.  
