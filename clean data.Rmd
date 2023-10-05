@@ -53,34 +53,34 @@ Our group will be using the FSB data on the employment status of graduates in or
 
 # Documented Code to Preprocesses Data
 ```{r}
-# Load necessary libraries
+## Load necessary libraries
 library(dplyr)
 
-# Load the data
+## Load the data
 df <- read.csv("FSB_Survey_Dirty.csv")  # Replace "your_data.csv" with your actual file path
 
-# Data overview
+## Data overview
 head(df)
 
-# Check missing values
+## Check missing values
 colSums(is.na(df))
 
-# Delete "X" variable
+## Delete "X" variable
 df <- df[-which(names(df) == "X")]
 
-# Delete columns for "BBRJ", "Study Abroad Courtesy Account", and "Transfer Work" due to lack of understanding and relevance
+## Delete columns for "BBRJ", "Study Abroad Courtesy Account", and "Transfer Work" due to lack of understanding and relevance
 df <- df[, !(names(df) %in% c("BBRJ","Study.Abroad.Courtesy.Account", "Transfer.Work..Pre.Banner."))]
 
-# Check for changes
+## Check for changes
 head(df)
 
-# Remove rows that contain a null value for "survey_state"
+## Remove rows that contain a null value for "survey_state"
 df <- df %>% filter(!is.na(survey_state))
 
-# Check data again
+## Check data again
 str(df)
 
-# Save the modified data to a new CSV file
+## Save the modified data to a new CSV file
 write.csv(df, file = "FSB_Survey.csv", row.names = FALSE)
 ```
 
