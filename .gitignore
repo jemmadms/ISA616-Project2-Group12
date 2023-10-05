@@ -1,5 +1,6 @@
 
 .Rproj.user
 FSB_BI_Survey_2019_2021.rds
+FSB_Survey.csv
 git rm --cached FSB_BI_Survey_2019_2021.rds
 git rm --cached .Rproj.user
