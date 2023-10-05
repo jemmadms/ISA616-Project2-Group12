@@ -19,7 +19,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+# R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
@@ -29,7 +29,7 @@ When you click the **Knit** button a document will be generated that includes bo
 summary(cars)
 ```
 
-## Including Plots
+# Including Plots
 
 You can also embed plots, for example:
 
@@ -39,11 +39,11 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-## Audience and Purpose
+# Audience and Purpose
 
 The purpose of our project is to help Mr. Kirk Bogard raise fund for Farmer School of Business. We will create several maps to clearly show companies in which region are more valuable to try to build external relationships. Audience of our project is shared work producers including people who do the same job as Mr. Kirk Bogard in a team, users who need to know how it done and how to done it better.
 
-## Value Proposition
+# Value Proposition
 
 ![](poster%20Value%20proposition%20canvas%20simple%20white.png)
 
@@ -51,6 +51,7 @@ The purpose of our project is to help Mr. Kirk Bogard raise fund for Farmer Scho
 
 Our group will be using the FSB data on the employment status of graduates in order to find information about geographic trends The data file is includes survey data on where students are going, what are students' salaries, job opportunities in each region between 2019 to 2021.
 
+# Documented Code to Preprocesses Data
 ```{r}
 # Load necessary libraries
 library(dplyr)
@@ -64,7 +65,7 @@ head(df)
 # Check missing values
 colSums(is.na(df))
 
-# Delete "Unnamed: 0" variable
+# Delete "X" variable
 df <- df[-which(names(df) == "X")]
 
 # Delete columns for "BBRJ", "Study Abroad Courtesy Account", and "Transfer Work" due to lack of understanding and relevance
@@ -82,4 +83,10 @@ str(df)
 # Save the modified data to a new CSV file
 write.csv(df, file = "FSB_Survey.csv", row.names = FALSE)
 ```
+
+# Explanation on Preprocess Code
+
+We start with analyze the data structure and missing values for each variable. Then we delete several variables which are don't relate to this project or not explained clearly, including BBRJ, Study Abroad Courtesy Account, Transfer Work, latin_honors.
+
+# Computering Environment
 
