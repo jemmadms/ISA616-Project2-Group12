@@ -36,7 +36,7 @@ You have three years of data representing FSB graduates, including graduates in 
 21.  IPEDS.Race.Ethnicity: text, OBIEE, race/ethnicity
 22.  Gender: text, OBIEE, sex
 23.  GPA.Range: text, OBIEE, GPA within a .5 range
-24.  Term.Code: numberic, OBIEE, First four digits are the physcal year (beginning in July, e.g. July 2020 is FY 2021).  Last two digits is the term (10=fall, 15=winter, 20=spring, 30=summer).
+24.  Term.Code: numeric, OBIEE, First four digits are the graduation year (beginning in July, e.g. July 2020 is FY 2021).  Last two digits is the term (10=fall, 15=winter, 20=spring, 30=summer).
 25.  Year.x: text, derived, first four digits of Term.Code stored as a character variable
 26.  latin_honors: text, survey, latin honors designation
 27.  survey_city: text, survey, student reported city in which their job is located
