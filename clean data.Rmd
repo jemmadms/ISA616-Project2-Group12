@@ -45,8 +45,41 @@ The purpose of our project is to help Mr. Kirk Bogard raise fund for Farmer Scho
 
 ## Value Proposition
 
-![](poster Value proposition canvas simple white.png)
+![](poster%20Value%20proposition%20canvas%20simple%20white.png)
 
 ## Data Description
 
 Our group will be using the FSB data on the employment status of graduates in order to find information about geographic trends The data file is includes survey data on where students are going, what are students' salaries, job opportunities in each region between 2019 to 2021.
+
+```{r}
+# Load necessary libraries
+library(dplyr)
+
+# Load the data
+df <- read.csv("FSB_Survey_Dirty.csv")  # Replace "your_data.csv" with your actual file path
+
+# Data overview
+head(df)
+
+# Check missing values
+colSums(is.na(df))
+
+# Delete "Unnamed: 0" variable
+df <- df[-which(names(df) == "X")]
+
+# Delete columns for "BBRJ", "Study Abroad Courtesy Account", and "Transfer Work" due to lack of understanding and relevance
+df <- df[, !(names(df) %in% c("BBRJ","Study.Abroad.Courtesy.Account", "Transfer.Work..Pre.Banner."))]
+
+# Check for changes
+head(df)
+
+# Remove rows that contain a null value for "survey_state"
+df <- df %>% filter(!is.na(survey_state))
+
+# Check data again
+str(df)
+
+# Save the modified data to a new CSV file
+write.csv(df, file = "FSB_Survey.csv", row.names = FALSE)
+```
+
