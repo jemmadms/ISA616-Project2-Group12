@@ -73,9 +73,8 @@ write.csv(df, file = "FSB_Survey.csv", row.names = FALSE)
 
 # Explanation on Preprocess Code
 
-We start with analyze the data structure and missing values for each variable. Then we delete several variables which are don't relate to this project or not explained clearly, including BBRJ, Study Abroad Courtesy Account, Transfer Work, latin_honors.
+We start with analyze the data structure and missing values for each variable. Then we delete several variables which are don't relate to this project or not explained clearly, including BBRJ, Study Abroad Courtesy Account, Transfer Work, latin_honors and so on to make our analysis process easier. Continuously, for accuracy of our analysis, we remove the missing values from the rest variables and checked our data. Finally, we documented the new data into "FSB_Survey.csv". 
 
 # Computering Environment
 
-## R.version()
-We will use the "FSB_Survey_Dirty.csv" as our original documents before clean data. And keep all codes for cleaning data in this file and document those new data into "FSB_Survey.csv". Thus, we can rerun the code to ensure reproductible.
+We run the code R.Version to figure out the version of r studio to ensure our code can be reproduce. Also, we will use the "FSB_Survey_Dirty.csv" as our original documents before clean data. And keep all codes for cleaning data in this file and document those new data into "FSB_Survey.csv". Thus, we can rerun the code to ensure reproductible.
