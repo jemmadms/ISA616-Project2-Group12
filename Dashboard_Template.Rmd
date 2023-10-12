@@ -9,10 +9,12 @@ output:
 
 # Questions and Written Insights
 
-Question 1: where students are by region/state
+Question 1: students' average salaries by region/state
+
 
 Question 2: city rank by job opportunities
 
+We will summarize number of students by city and rank those cities by frequency. Thus, we could find which city give our students more job opportunities. 
 
 
 
