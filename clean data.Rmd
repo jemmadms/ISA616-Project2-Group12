@@ -57,22 +57,30 @@ df <- df[-which(names(df) == "X")]
 ## Delete columns for "BBRJ", "Study Abroad Courtesy Account", and "Transfer Work" due to lack of understanding and relevance
 df <- df[, !(names(df) %in% c("BBRJ","Study.Abroad.Courtesy.Account", "Transfer.Work..Pre.Banner."))]
 
-##
-df <- df[, !(names(df) %in%select(-nmajor, -`Business Direct Admit`, -`First Generation College Stdnt`, 
-         -`Combined Bacc and Masters`, -`Dean's List`, -`FSB Scholars`, 
-         -`Honors Program`, -`President's List`, -`Cum Laude`, -`Magna Cum Laude`, 
-         -`Summa Cum Laude`, -`University Honors`, -`UniversityHonors w/Distinction`, 
-         -year.x, -latin_honors, -survey_gradprogram, -survey_gradschool, 
-         -survey_internfour, -survey_internone, -survey_internships, 
-         -survey_internthree, -survey_interntwo)
+## Delete columns due to relevance to research question
+df <- df[, !(names(df) %in% c("nmajor", "Business.Direct.Admit", "First.Generation.College.Stdnt", "Combined.Bacc.and.Masters", "Dean.s.List", "FSB.Scholars", "Honors.Program", "President.s.List", "Cum.Laude", "Magna.Cum.Laude", "Summa.Cum.Laude", "University.Honors","UniversityHonors.w.Distinction", "year.x", "latin_honors", "survey_gradprogram", "survey_gradschool", 
+"survey_internfour","survey_internone", "survey_internships", "survey_internthree", "survey_interntwo"))]
+
 ## Check for changes
 head(df)
 
+## Check dimensions
+dim(df)
+
 ## Remove rows that contain a null value for "survey_state"
-df <- df %>% filter(!is.na(survey_state))
+df <- df[!is.na(df$survey_state), , drop = FALSE]
 
 ## Check data again
 str(df)
+
+# Fill missing values in columns 'survey_city', 'survey_company', and 'survey_deptfunc' with "Unknown"
+df[, c("survey_city", "survey_company", "survey_deptfunc")] <- lapply(df[, c("survey_city", "survey_company", "survey_deptfunc")], function(x) ifelse(is.na(x), "Unknown", x))
+
+# Fill missing values in columns 'survey_offers', 'survey_pref_field', and 'survey_pref_loc' with "None"
+df[, c("survey_offers", "survey_pref_field", "survey_pref_loc")] <- lapply(df[, c("survey_offers", "survey_pref_field", "survey_pref_loc")], function(x) ifelse(is.na(x), "None", x))
+
+# Fill missing values in the 'survey_salary' column with the mean salary
+df$survey_salary[is.na(df$survey_salary)] <- mean(df$survey_salary, na.rm = TRUE)
 
 ## Save the modified data to a new CSV file
 write.csv(df, file = "FSB_Survey.csv", row.names = FALSE)
