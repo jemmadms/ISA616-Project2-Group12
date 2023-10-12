@@ -62,15 +62,15 @@ valueBox(nusable, icon="fa-users")
 # note that I have been unable to get all icons to work
 ```
 
-### Class Rank
+### City Rank by Job Opportunities {data-orientation="columns"}
 
 ```{r,echo=FALSE}
-p = ggplot(internraw, aes(x=classrank))+
-  geom_bar(color="deeppink", fill = "deeppink")+
-  xlab("Class Rank")+
-  ylab("Numberof Responses")+
-  theme_bw()
-ggplotly(p)
+# p = ggplot(internraw, aes(x=survey_city))+
+#   geom_bar(color="deeppink", fill = "deeppink")+
+#   xlab("City Rank")+
+#   ylab("Number of ")+
+#   theme_bw()
+# ggplotly(p)
 ```
 
 ## row {data-height="600"}
