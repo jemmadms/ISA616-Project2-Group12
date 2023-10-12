@@ -44,7 +44,7 @@ library(dplyr)
 ##### The data is loaded and displayed to check the success of the loading {.unnumbered}
 
 ```{r}
-df <- read.csv("FSB_Survey_Dirty.csv")
+df <- readRDS('FSB_BI_Survey_2019_2021.rds')
 head(df)
 ```
 
@@ -54,22 +54,16 @@ head(df)
 colSums(is.na(df))
 ```
 
-##### An extra index "X" is removed {.unnumbered}
-
-```{r}
-df <- df[-which(names(df) == "X")]
-```
-
 ##### Variables are removed due to lack of understanding, missing values, and relevance {.unnumbered}
 
 ```{r}
 # Variables "BBRJ", "Study Abroad Courtesy Account", and "Transfer Work" are removed due to lack of understanding and missing variables
 
-df <- df[, !(names(df) %in% c("BBRJ","Study.Abroad.Courtesy.Account", "Transfer.Work..Pre.Banner."))]
+df <- df[, !(names(df) %in% c("BBRJ","Study Abroad Courtesy Account", "Transfer Work (Pre-Banner)"))]
 
 # Variables without relevance to the research question are removed
 
-df <- df[, !(names(df) %in% c("nmajor", "Business.Direct.Admit", "First.Generation.College.Stdnt", "Combined.Bacc.and.Masters", "Dean.s.List", "FSB.Scholars", "Honors.Program", "President.s.List", "Cum.Laude", "Magna.Cum.Laude", "Summa.Cum.Laude", "University.Honors","UniversityHonors.w.Distinction", "year.x", "latin_honors", "survey_gradprogram", "survey_gradschool", "survey_internfour","survey_internone", "survey_internships", "survey_internthree", "survey_interntwo"))]
+df <- df[, !(names(df) %in% c("nmajor", "Business Direct Admit", "First Generation College Stdnt", "Combined Bacc and Masters", "Dean's List", "FSB Scholars", "Honors Program", "President's List", "Cum Laude", "Magna Cum Laude", "Summa Cum Laude", "University Honors","UniversityHonors w/Distinction", "year.x", "latin_honors", "survey_gradprogram", "survey_gradschool", "survey_internfour","survey_internone", "survey_internships", "survey_internthree", "survey_interntwo"))]
 ```
 
 ##### The data is displayed again and the dimensions are checked to confirm removal of variables {.unnumbered}
@@ -129,4 +123,4 @@ We started by getting an overview the data structure and missing values for each
 R.Version()
 ```
 
-We ran the code R.Version（）to determine the version of r studio used to ensure our code can be reproduced. We have also saved our original file "FSB_Survey_Dirty.csv". Thus, we can rerun the code in the future to ensure reproducibility.
+We ran the code R.Version（）to determine the version of r studio used to ensure our code can be reproduced. We have also saved our original file "FSB_BI_Survey_2019_2021.rds". Thus, we can rerun the code in the future to ensure reproducibility.
