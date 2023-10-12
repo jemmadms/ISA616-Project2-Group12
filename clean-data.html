@@ -2888,43 +2888,36 @@ border-radius: 0px;
 </div>
 
 
-<div id="r-markdown" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> R Markdown</h1>
-<p>This is an R Markdown document. Markdown is a simple formatting
-syntax for authoring HTML, PDF, and MS Word documents. For more details
-on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be
-generated that includes both content as well as the output of any
-embedded R code chunks within the document. You can embed an R code
-chunk like this:</p>
-</div>
-<div id="audience-and-purpose" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Audience and
+<div id="audience-and-purpose" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Audience and
 Purpose</h1>
-<p>The purpose of our project is to help Mr. Kirk Bogard raise fund for
+<p>The purpose of our project is to help Mr. Kirk Bogard raise funds for
 Farmer School of Business. We will create several maps to clearly show
-companies in which region are more valuable to try to build external
-relationships. Audience of our project is shared work producers
-including people who do the same job as Mr. Kirk Bogard in a team, users
-who need to know how it done and how to done it better.</p>
+companies in regions where it is valuable to try to build external
+relationships. The audience of our project are shared work producers
+including the team of people who do the same job as Mr. Kirk Bogard,
+users who need to know how it is done, and how to do it better.</p>
 </div>
-<div id="value-proposition" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Value Proposition</h1>
+<div id="value-proposition" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Value Proposition</h1>
 <p><img src="poster%20Value%20proposition%20canvas%20simple%20white.png" /></p>
-<div id="data-description" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Data Description</h2>
+<div id="data-description" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Data Description</h2>
 <p>Our group will be using the FSB data on the employment status of
-graduates in order to find information about geographic trends The data
-file is includes survey data on where students are going, what are
-students’ salaries, job opportunities in each region between 2019 to
+graduates in order to find information about geographic trends. The data
+file includes survey data on where students are going, what students’
+salaries are, and job opportunities in different regions between 2019 to
 2021.</p>
 </div>
 </div>
-<div id="documented-code-to-preprocesses-data" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Documented Code to
+<div id="documented-code-to-preprocesses-data" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Documented Code to
 Preprocesses Data</h1>
-<pre class="r"><code>## Load necessary libraries
-library(dplyr)</code></pre>
+<p>The code was originally written in python in a secure FSB Jupyter
+Server and translated to be used in R studio.</p>
+<div id="the-necessary-libraries-are-loaded-into-r" class="section level5 unnumbered">
+<h5 class="unnumbered">The necessary libraries are loaded into R</h5>
+<pre class="r"><code>library(dplyr)</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:stats&#39;:
@@ -2933,18 +2926,21 @@ library(dplyr)</code></pre>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>## Load the data
-df &lt;- read.csv(&quot;FSB_Survey_Dirty.csv&quot;)
-
-## Data overview
+</div>
+<div id="the-data-is-loaded-and-displayed-to-check-the-success-of-the-loading" class="section level5 unnumbered">
+<h5 class="unnumbered">The data is loaded and displayed to check the
+success of the loading</h5>
+<pre class="r"><code>df &lt;- read.csv(&quot;FSB_Survey_Dirty.csv&quot;)
 head(df)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["X"],"name":[1],"type":["int"],"align":["right"]},{"label":["nmajor"],"name":[2],"type":["int"],"align":["right"]},{"label":["major1"],"name":[3],"type":["chr"],"align":["left"]},{"label":["major2"],"name":[4],"type":["chr"],"align":["left"]},{"label":["BBRJ"],"name":[5],"type":["int"],"align":["right"]},{"label":["Business.Direct.Admit"],"name":[6],"type":["int"],"align":["right"]},{"label":["Combined.Bacc.and.Masters"],"name":[7],"type":["int"],"align":["right"]},{"label":["Dean.s.List"],"name":[8],"type":["int"],"align":["right"]},{"label":["First.Generation.College.Stdnt"],"name":[9],"type":["int"],"align":["right"]},{"label":["FSB.Scholars"],"name":[10],"type":["int"],"align":["right"]},{"label":["Honors.Program"],"name":[11],"type":["int"],"align":["right"]},{"label":["President.s.List"],"name":[12],"type":["int"],"align":["right"]},{"label":["Study.Abroad.Courtesy.Account"],"name":[13],"type":["int"],"align":["right"]},{"label":["Transfer.Work..Pre.Banner."],"name":[14],"type":["int"],"align":["right"]},{"label":["Cum.Laude"],"name":[15],"type":["int"],"align":["right"]},{"label":["Magna.Cum.Laude"],"name":[16],"type":["int"],"align":["right"]},{"label":["Summa.Cum.Laude"],"name":[17],"type":["int"],"align":["right"]},{"label":["University.Honors"],"name":[18],"type":["int"],"align":["right"]},{"label":["UniversityHonors.w.Distinction"],"name":[19],"type":["int"],"align":["right"]},{"label":["minor1"],"name":[20],"type":["chr"],"align":["left"]},{"label":["minor2"],"name":[21],"type":["chr"],"align":["left"]},{"label":["IPEDS.Race.Ethnicity"],"name":[22],"type":["chr"],"align":["left"]},{"label":["Gender"],"name":[23],"type":["chr"],"align":["left"]},{"label":["GPA.Range"],"name":[24],"type":["chr"],"align":["left"]},{"label":["Term.Code"],"name":[25],"type":["int"],"align":["right"]},{"label":["year.x"],"name":[26],"type":["int"],"align":["right"]},{"label":["latin_honors"],"name":[27],"type":["chr"],"align":["left"]},{"label":["survey_city"],"name":[28],"type":["chr"],"align":["left"]},{"label":["survey_company"],"name":[29],"type":["chr"],"align":["left"]},{"label":["survey_deptfunc"],"name":[30],"type":["chr"],"align":["left"]},{"label":["survey_gradprogram"],"name":[31],"type":["chr"],"align":["left"]},{"label":["survey_gradschool"],"name":[32],"type":["chr"],"align":["left"]},{"label":["survey_internfour"],"name":[33],"type":["chr"],"align":["left"]},{"label":["survey_internone"],"name":[34],"type":["chr"],"align":["left"]},{"label":["survey_internships"],"name":[35],"type":["chr"],"align":["left"]},{"label":["survey_internthree"],"name":[36],"type":["chr"],"align":["left"]},{"label":["survey_interntwo"],"name":[37],"type":["chr"],"align":["left"]},{"label":["survey_offers"],"name":[38],"type":["chr"],"align":["left"]},{"label":["survey_plans"],"name":[39],"type":["chr"],"align":["left"]},{"label":["survey_pref_field"],"name":[40],"type":["chr"],"align":["left"]},{"label":["survey_pref_loc"],"name":[41],"type":["chr"],"align":["left"]},{"label":["survey_salary"],"name":[42],"type":["dbl"],"align":["right"]},{"label":["survey_state"],"name":[43],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"1","3":"Marketing","4":"none","5":"0","6":"1","7":"0","8":"0","9":"0","10":"0","11":"0","12":"0","13":"0","14":"0","15":"0","16":"0","17":"0","18":"0","19":"0","20":"No Minor","21":"No Minor","22":"Hispanic/Latino","23":"Male","24":"2.00 - 2.49","25":"202015","26":"2020","27":"0","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NA","36":"NA","37":"NA","38":"NA","39":"seeking continuing education","40":"NA","41":"NA","42":"NA","43":"NA","_rn_":"1"},{"1":"2","2":"1","3":"Finance","4":"none","5":"0","6":"1","7":"0","8":"0","9":"0","10":"0","11":"0","12":"0","13":"0","14":"0","15":"0","16":"0","17":"0","18":"0","19":"0","20":"Business Legal Studies","21":"No Minor","22":"White","23":"Male","24":"3.00 - 3.49","25":"201920","26":"2019","27":"0","28":"Toledo","29":"BAM Nutual","30":"Finance","31":"NA","32":"NA","33":"NA","34":"NA","35":"0","36":"NA","37":"NA","38":"0","39":"accepted fulltime job","40":"Yes","41":"Yes","42":"NA","43":"Ohio","_rn_":"2"},{"1":"3","2":"1","3":"Marketing","4":"none","5":"0","6":"1","7":"0","8":"1","9":"0","10":"0","11":"0","12":"0","13":"0","14":"0","15":"1","16":"0","17":"0","18":"0","19":"0","20":"Humanities","21":"Humanities","22":"Asian","23":"Female","24":"3.50 - 4.00","25":"202120","26":"2021","27":"0","28":"Columbus","29":"CoHatch","30":"General Management","31":"NA","32":"NA","33":"NA","34":"Second Time Founders","35":"2","36":"NA","37":"La Soupe","38":"1","39":"accepted fulltime job","40":"Yes","41":"Yes","42":"40000","43":"OH","_rn_":"3"},{"1":"4","2":"1","3":"Finance","4":"none","5":"0","6":"1","7":"0","8":"0","9":"1","10":"0","11":"0","12":"0","13":"0","14":"0","15":"0","16":"0","17":"0","18":"0","19":"0","20":"Accountancy","21":"Accountancy","22":"White","23":"Male","24":"3.00 - 3.49","25":"202020","26":"2020","27":"0","28":"NA","29":"PwC","30":"NA","31":"NA","32":"NA","33":"NA","34":"Bauer Hockey","35":"2","36":"NA","37":"IHS Markit","38":"NA","39":"accepted fulltime job","40":"NA","41":"NA","42":"NA","43":"NA","_rn_":"4"},{"1":"5","2":"1","3":"Marketing","4":"none","5":"0","6":"1","7":"0","8":"1","9":"0","10":"0","11":"0","12":"0","13":"0","14":"0","15":"0","16":"0","17":"0","18":"0","19":"0","20":"Supply Chain Management","21":"Supply Chain Management","22":"White","23":"Male","24":"3.00 - 3.49","25":"201920","26":"2019","27":"0","28":"Columbus","29":"Abercrombie & Fitch","30":"General Management","31":"NA","32":"NA","33":"NA","34":"Nouveau Vie, LLC.","35":"2","36":"NA","37":"Abercrombie & Fitch","38":"1","39":"accepted fulltime job","40":"Yes","41":"Yes","42":"63500","43":"Ohio","_rn_":"5"},{"1":"6","2":"1","3":"Marketing","4":"none","5":"0","6":"1","7":"0","8":"0","9":"0","10":"0","11":"0","12":"0","13":"0","14":"1","15":"0","16":"0","17":"0","18":"0","19":"0","20":"Humanities","21":"Humanities","22":"White","23":"Female","24":"3.00 - 3.49","25":"202020","26":"2020","27":"0","28":"Cleveland","29":"McDonald's","30":"Consulting Marketing / Sales Operations / Procurement","31":"NA","32":"NA","33":"Victoria's Secret","34":"CNN / Turner Broadcasting","35":"4","36":"Oxford Medical Aesthetics and Laser","37":"Hylant","38":"4","39":"accepted fulltime job","40":"Yes","41":"Yes","42":"68000","43":"OH","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<pre class="r"><code>## Check missing values
-colSums(is.na(df))</code></pre>
+</div>
+<div id="missing-values-are-evaluated" class="section level5 unnumbered">
+<h5 class="unnumbered">Missing values are evaluated</h5>
+<pre class="r"><code>colSums(is.na(df))</code></pre>
 <pre><code>##                              X                         nmajor 
 ##                              0                              0 
 ##                         major1                         major2 
@@ -2989,31 +2985,43 @@ colSums(is.na(df))</code></pre>
 ##                           1631                           1503 
 ##                   survey_state 
 ##                           1298</code></pre>
-<pre class="r"><code>## Delete &quot;X&quot; variable
-df &lt;- df[-which(names(df) == &quot;X&quot;)]
+</div>
+<div id="an-extra-index-x-is-removed" class="section level5 unnumbered">
+<h5 class="unnumbered">An extra index “X” is removed</h5>
+<pre class="r"><code>df &lt;- df[-which(names(df) == &quot;X&quot;)]</code></pre>
+</div>
+<div id="variables-are-removed-due-to-lack-of-understanding-missing-values-and-relevance" class="section level5 unnumbered">
+<h5 class="unnumbered">Variables are removed due to lack of
+understanding, missing values, and relevance</h5>
+<pre class="r"><code># Variables &quot;BBRJ&quot;, &quot;Study Abroad Courtesy Account&quot;, and &quot;Transfer Work&quot; are removed due to lack of understanding and missing variables
 
-## Delete columns for &quot;BBRJ&quot;, &quot;Study Abroad Courtesy Account&quot;, and &quot;Transfer Work&quot; due to lack of understanding and relevance
 df &lt;- df[, !(names(df) %in% c(&quot;BBRJ&quot;,&quot;Study.Abroad.Courtesy.Account&quot;, &quot;Transfer.Work..Pre.Banner.&quot;))]
 
-## Delete columns due to relevance to research question
-df &lt;- df[, !(names(df) %in% c(&quot;nmajor&quot;, &quot;Business.Direct.Admit&quot;, &quot;First.Generation.College.Stdnt&quot;, &quot;Combined.Bacc.and.Masters&quot;, &quot;Dean.s.List&quot;, &quot;FSB.Scholars&quot;, &quot;Honors.Program&quot;, &quot;President.s.List&quot;, &quot;Cum.Laude&quot;, &quot;Magna.Cum.Laude&quot;, &quot;Summa.Cum.Laude&quot;, &quot;University.Honors&quot;,&quot;UniversityHonors.w.Distinction&quot;, &quot;year.x&quot;, &quot;latin_honors&quot;, &quot;survey_gradprogram&quot;, &quot;survey_gradschool&quot;, 
-&quot;survey_internfour&quot;,&quot;survey_internone&quot;, &quot;survey_internships&quot;, &quot;survey_internthree&quot;, &quot;survey_interntwo&quot;))]
+# Variables without relevance to the research question are removed
 
-## Check for changes
-head(df)</code></pre>
+df &lt;- df[, !(names(df) %in% c(&quot;nmajor&quot;, &quot;Business.Direct.Admit&quot;, &quot;First.Generation.College.Stdnt&quot;, &quot;Combined.Bacc.and.Masters&quot;, &quot;Dean.s.List&quot;, &quot;FSB.Scholars&quot;, &quot;Honors.Program&quot;, &quot;President.s.List&quot;, &quot;Cum.Laude&quot;, &quot;Magna.Cum.Laude&quot;, &quot;Summa.Cum.Laude&quot;, &quot;University.Honors&quot;,&quot;UniversityHonors.w.Distinction&quot;, &quot;year.x&quot;, &quot;latin_honors&quot;, &quot;survey_gradprogram&quot;, &quot;survey_gradschool&quot;, &quot;survey_internfour&quot;,&quot;survey_internone&quot;, &quot;survey_internships&quot;, &quot;survey_internthree&quot;, &quot;survey_interntwo&quot;))]</code></pre>
+</div>
+<div id="the-data-is-displayed-again-and-the-dimensions-are-checked-to-confirm-removal-of-variables" class="section level5 unnumbered">
+<h5 class="unnumbered">The data is displayed again and the dimensions
+are checked to confirm removal of variables</h5>
+<pre class="r"><code>head(df)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["major1"],"name":[1],"type":["chr"],"align":["left"]},{"label":["major2"],"name":[2],"type":["chr"],"align":["left"]},{"label":["minor1"],"name":[3],"type":["chr"],"align":["left"]},{"label":["minor2"],"name":[4],"type":["chr"],"align":["left"]},{"label":["IPEDS.Race.Ethnicity"],"name":[5],"type":["chr"],"align":["left"]},{"label":["Gender"],"name":[6],"type":["chr"],"align":["left"]},{"label":["GPA.Range"],"name":[7],"type":["chr"],"align":["left"]},{"label":["Term.Code"],"name":[8],"type":["int"],"align":["right"]},{"label":["survey_city"],"name":[9],"type":["chr"],"align":["left"]},{"label":["survey_company"],"name":[10],"type":["chr"],"align":["left"]},{"label":["survey_deptfunc"],"name":[11],"type":["chr"],"align":["left"]},{"label":["survey_offers"],"name":[12],"type":["chr"],"align":["left"]},{"label":["survey_plans"],"name":[13],"type":["chr"],"align":["left"]},{"label":["survey_pref_field"],"name":[14],"type":["chr"],"align":["left"]},{"label":["survey_pref_loc"],"name":[15],"type":["chr"],"align":["left"]},{"label":["survey_salary"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["survey_state"],"name":[17],"type":["chr"],"align":["left"]}],"data":[{"1":"Marketing","2":"none","3":"No Minor","4":"No Minor","5":"Hispanic/Latino","6":"Male","7":"2.00 - 2.49","8":"202015","9":"NA","10":"NA","11":"NA","12":"NA","13":"seeking continuing education","14":"NA","15":"NA","16":"NA","17":"NA","_rn_":"1"},{"1":"Finance","2":"none","3":"Business Legal Studies","4":"No Minor","5":"White","6":"Male","7":"3.00 - 3.49","8":"201920","9":"Toledo","10":"BAM Nutual","11":"Finance","12":"0","13":"accepted fulltime job","14":"Yes","15":"Yes","16":"NA","17":"Ohio","_rn_":"2"},{"1":"Marketing","2":"none","3":"Humanities","4":"Humanities","5":"Asian","6":"Female","7":"3.50 - 4.00","8":"202120","9":"Columbus","10":"CoHatch","11":"General Management","12":"1","13":"accepted fulltime job","14":"Yes","15":"Yes","16":"40000","17":"OH","_rn_":"3"},{"1":"Finance","2":"none","3":"Accountancy","4":"Accountancy","5":"White","6":"Male","7":"3.00 - 3.49","8":"202020","9":"NA","10":"PwC","11":"NA","12":"NA","13":"accepted fulltime job","14":"NA","15":"NA","16":"NA","17":"NA","_rn_":"4"},{"1":"Marketing","2":"none","3":"Supply Chain Management","4":"Supply Chain Management","5":"White","6":"Male","7":"3.00 - 3.49","8":"201920","9":"Columbus","10":"Abercrombie & Fitch","11":"General Management","12":"1","13":"accepted fulltime job","14":"Yes","15":"Yes","16":"63500","17":"Ohio","_rn_":"5"},{"1":"Marketing","2":"none","3":"Humanities","4":"Humanities","5":"White","6":"Female","7":"3.00 - 3.49","8":"202020","9":"Cleveland","10":"McDonald's","11":"Consulting Marketing / Sales Operations / Procurement","12":"4","13":"accepted fulltime job","14":"Yes","15":"Yes","16":"68000","17":"OH","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<pre class="r"><code>## Check dimensions
-dim(df)</code></pre>
+<pre class="r"><code>dim(df)</code></pre>
 <pre><code>## [1] 3235   17</code></pre>
-<pre class="r"><code>## Remove rows that contain a null value for &quot;survey_state&quot;
-df &lt;- df[!is.na(df$survey_state), , drop = FALSE]
-
-## Check data again
-str(df)</code></pre>
+</div>
+<div id="rows-that-contain-a-null-value-for-survey_state-are-removed" class="section level5 unnumbered">
+<h5 class="unnumbered">Rows that contain a null value for “survey_state”
+are removed</h5>
+<pre class="r"><code>df &lt;- df[!is.na(df$survey_state), , drop = FALSE]</code></pre>
+</div>
+<div id="the-data-is-checked-for-remaining-null-values" class="section level5 unnumbered">
+<h5 class="unnumbered">The data is checked for remaining null
+values</h5>
+<pre class="r"><code>str(df)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    1937 obs. of  17 variables:
 ##  $ major1              : chr  &quot;Finance&quot; &quot;Marketing&quot; &quot;Marketing&quot; &quot;Marketing&quot; ...
 ##  $ major2              : chr  &quot;none&quot; &quot;none&quot; &quot;none&quot; &quot;none&quot; ...
@@ -3032,20 +3040,51 @@ str(df)</code></pre>
 ##  $ survey_pref_loc     : chr  &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; ...
 ##  $ survey_salary       : num  NA 40000 63500 68000 58000 53000 85000 58000 62000 NA ...
 ##  $ survey_state        : chr  &quot;Ohio&quot; &quot;OH&quot; &quot;Ohio&quot; &quot;OH&quot; ...</code></pre>
-<pre class="r"><code># Fill missing values in columns &#39;survey_city&#39;, &#39;survey_company&#39;, and &#39;survey_deptfunc&#39; with &quot;Unknown&quot;
+</div>
+<div id="null-values-are-imputed" class="section level5 unnumbered">
+<h5 class="unnumbered">Null values are imputed</h5>
+<pre class="r"><code># Missing values in variables &#39;survey_city&#39;, &#39;survey_company&#39;, and &#39;survey_deptfunc&#39; are imputed with &quot;Unknown&quot;
+
 df[, c(&quot;survey_city&quot;, &quot;survey_company&quot;, &quot;survey_deptfunc&quot;)] &lt;- lapply(df[, c(&quot;survey_city&quot;, &quot;survey_company&quot;, &quot;survey_deptfunc&quot;)], function(x) ifelse(is.na(x), &quot;Unknown&quot;, x))
 
-# Fill missing values in columns &#39;survey_offers&#39;, &#39;survey_pref_field&#39;, and &#39;survey_pref_loc&#39; with &quot;None&quot;
+# Missing values in variables &#39;survey_offers&#39;, &#39;survey_pref_field&#39;, and &#39;survey_pref_loc&#39; are imputed with &quot;None&quot;
+
 df[, c(&quot;survey_offers&quot;, &quot;survey_pref_field&quot;, &quot;survey_pref_loc&quot;)] &lt;- lapply(df[, c(&quot;survey_offers&quot;, &quot;survey_pref_field&quot;, &quot;survey_pref_loc&quot;)], function(x) ifelse(is.na(x), &quot;None&quot;, x))
 
-# Fill missing values in the &#39;survey_salary&#39; column with the mean salary
-df$survey_salary[is.na(df$survey_salary)] &lt;- mean(df$survey_salary, na.rm = TRUE)
+# The missing values in the &#39;survey_salary&#39; variable are imputed with the mean salary
 
-## Save the modified data to a new CSV file
-write.csv(df, file = &quot;FSB_Survey.csv&quot;, row.names = FALSE)</code></pre>
+df$survey_salary[is.na(df$survey_salary)] &lt;- mean(df$survey_salary, na.rm = TRUE)</code></pre>
 </div>
-<div id="explanation-on-preprocess-code" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Explanation on
+<div id="the-data-is-checked-for-remaining-null-values-1" class="section level5 unnumbered">
+<h5 class="unnumbered">The data is checked for remaining null
+values</h5>
+<pre class="r"><code>str(df)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    1937 obs. of  17 variables:
+##  $ major1              : chr  &quot;Finance&quot; &quot;Marketing&quot; &quot;Marketing&quot; &quot;Marketing&quot; ...
+##  $ major2              : chr  &quot;none&quot; &quot;none&quot; &quot;none&quot; &quot;none&quot; ...
+##  $ minor1              : chr  &quot;Business Legal Studies&quot; &quot;Humanities&quot; &quot;Supply Chain Management&quot; &quot;Humanities&quot; ...
+##  $ minor2              : chr  &quot;No Minor&quot; &quot;Humanities&quot; &quot;Supply Chain Management&quot; &quot;Humanities&quot; ...
+##  $ IPEDS.Race.Ethnicity: chr  &quot;White&quot; &quot;Asian&quot; &quot;White&quot; &quot;White&quot; ...
+##  $ Gender              : chr  &quot;Male&quot; &quot;Female&quot; &quot;Male&quot; &quot;Female&quot; ...
+##  $ GPA.Range           : chr  &quot;3.00 - 3.49&quot; &quot;3.50 - 4.00&quot; &quot;3.00 - 3.49&quot; &quot;3.00 - 3.49&quot; ...
+##  $ Term.Code           : int  201920 202120 201920 202020 201920 202120 201920 202020 202120 201920 ...
+##  $ survey_city         : chr  &quot;Toledo&quot; &quot;Columbus&quot; &quot;Columbus&quot; &quot;Cleveland&quot; ...
+##  $ survey_company      : chr  &quot;BAM Nutual&quot; &quot;CoHatch&quot; &quot;Abercrombie &amp; Fitch&quot; &quot;McDonald&#39;s&quot; ...
+##  $ survey_deptfunc     : chr  &quot;Finance&quot; &quot;General Management&quot; &quot;General Management&quot; &quot;Consulting Marketing / Sales Operations / Procurement&quot; ...
+##  $ survey_offers       : chr  &quot;0&quot; &quot;1&quot; &quot;1&quot; &quot;4&quot; ...
+##  $ survey_plans        : chr  &quot;accepted fulltime job&quot; &quot;accepted fulltime job&quot; &quot;accepted fulltime job&quot; &quot;accepted fulltime job&quot; ...
+##  $ survey_pref_field   : chr  &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; ...
+##  $ survey_pref_loc     : chr  &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; &quot;Yes&quot; ...
+##  $ survey_salary       : num  58120 40000 63500 68000 58000 ...
+##  $ survey_state        : chr  &quot;Ohio&quot; &quot;OH&quot; &quot;Ohio&quot; &quot;OH&quot; ...</code></pre>
+</div>
+<div id="the-modified-data-is-saved-to-a-new-csv-file" class="section level5 unnumbered">
+<h5 class="unnumbered">The modified data is saved to a new CSV file</h5>
+<pre class="r"><code>write.csv(df, file = &quot;FSB_Survey.csv&quot;, row.names = FALSE)</code></pre>
+</div>
+</div>
+<div id="explanation-on-preprocess-code" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Explanation on
 Preprocess Code</h1>
 <p>We start with analyze the data structure and missing values for each
 variable. Then we delete several variables which are don’t relate to
@@ -3056,8 +3095,8 @@ remove the missing values from the rest variables and checked our data.
 Finally, we documented the new data into “FSB_Survey.csv”. This document
 is what we will use for analysis.</p>
 </div>
-<div id="computering-environment" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Computering
+<div id="computering-environment" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Computering
 Environment</h1>
 <p>We run the code R.Versio（） to figure out the version of r studio to
 ensure our code can be reproduce. Also, we will use the
@@ -3067,7 +3106,7 @@ data into “FSB_Survey.csv”. Thus, we can rerun the code to ensure
 reproductible.</p>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiU3R1ZGVudCBTdWNjZXNzIC0gY2xlYW4gZGF0YSIKYXV0aG9yOiAiSmVtbWEgTWFyY3VzLVNoaSAmIExpbmppZSBaaHUiCmRhdGU6ICJgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVkICVCLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICBjb2RlX2ZvbGRpbmc6IHNob3cKICAgIGRmX3ByaW50OiBwYWdlZAogICAgbnVtYmVyX3NlY3Rpb25zOiB5ZXMKICAgIHRoZW1lOiByZWFkYWJsZQogICAgdG9jOiB5ZXMKICAgIHRvY19mbG9hdDogeWVzCiAgICBjb2RlX2Rvd25sb2FkOiB5ZXMKICB3b3JkX2RvY3VtZW50OgogICAgdG9jOiBubwotLS0KCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKIyBSIE1hcmtkb3duCgpUaGlzIGlzIGFuIFIgTWFya2Rvd24gZG9jdW1lbnQuIE1hcmtkb3duIGlzIGEgc2ltcGxlIGZvcm1hdHRpbmcgc3ludGF4IGZvciBhdXRob3JpbmcgSFRNTCwgUERGLCBhbmQgTVMgV29yZCBkb2N1bWVudHMuIEZvciBtb3JlIGRldGFpbHMgb24gdXNpbmcgUiBNYXJrZG93biBzZWUgPGh0dHA6Ly9ybWFya2Rvd24ucnN0dWRpby5jb20+LgoKV2hlbiB5b3UgY2xpY2sgdGhlICoqS25pdCoqIGJ1dHRvbiBhIGRvY3VtZW50IHdpbGwgYmUgZ2VuZXJhdGVkIHRoYXQgaW5jbHVkZXMgYm90aCBjb250ZW50IGFzIHdlbGwgYXMgdGhlIG91dHB1dCBvZiBhbnkgZW1iZWRkZWQgUiBjb2RlIGNodW5rcyB3aXRoaW4gdGhlIGRvY3VtZW50LiBZb3UgY2FuIGVtYmVkIGFuIFIgY29kZSBjaHVuayBsaWtlIHRoaXM6CgojIEF1ZGllbmNlIGFuZCBQdXJwb3NlCgpUaGUgcHVycG9zZSBvZiBvdXIgcHJvamVjdCBpcyB0byBoZWxwIE1yLiBLaXJrIEJvZ2FyZCByYWlzZSBmdW5kIGZvciBGYXJtZXIgU2Nob29sIG9mIEJ1c2luZXNzLiBXZSB3aWxsIGNyZWF0ZSBzZXZlcmFsIG1hcHMgdG8gY2xlYXJseSBzaG93IGNvbXBhbmllcyBpbiB3aGljaCByZWdpb24gYXJlIG1vcmUgdmFsdWFibGUgdG8gdHJ5IHRvIGJ1aWxkIGV4dGVybmFsIHJlbGF0aW9uc2hpcHMuIEF1ZGllbmNlIG9mIG91ciBwcm9qZWN0IGlzIHNoYXJlZCB3b3JrIHByb2R1Y2VycyBpbmNsdWRpbmcgcGVvcGxlIHdobyBkbyB0aGUgc2FtZSBqb2IgYXMgTXIuIEtpcmsgQm9nYXJkIGluIGEgdGVhbSwgdXNlcnMgd2hvIG5lZWQgdG8ga25vdyBob3cgaXQgZG9uZSBhbmQgaG93IHRvIGRvbmUgaXQgYmV0dGVyLgoKIyBWYWx1ZSBQcm9wb3NpdGlvbgoKIVtdKHBvc3RlciUyMFZhbHVlJTIwcHJvcG9zaXRpb24lMjBjYW52YXMlMjBzaW1wbGUlMjB3aGl0ZS5wbmcpCgojIyBEYXRhIERlc2NyaXB0aW9uCgpPdXIgZ3JvdXAgd2lsbCBiZSB1c2luZyB0aGUgRlNCIGRhdGEgb24gdGhlIGVtcGxveW1lbnQgc3RhdHVzIG9mIGdyYWR1YXRlcyBpbiBvcmRlciB0byBmaW5kIGluZm9ybWF0aW9uIGFib3V0IGdlb2dyYXBoaWMgdHJlbmRzIFRoZSBkYXRhIGZpbGUgaXMgaW5jbHVkZXMgc3VydmV5IGRhdGEgb24gd2hlcmUgc3R1ZGVudHMgYXJlIGdvaW5nLCB3aGF0IGFyZSBzdHVkZW50cycgc2FsYXJpZXMsIGpvYiBvcHBvcnR1bml0aWVzIGluIGVhY2ggcmVnaW9uIGJldHdlZW4gMjAxOSB0byAyMDIxLgoKIyBEb2N1bWVudGVkIENvZGUgdG8gUHJlcHJvY2Vzc2VzIERhdGEKCmBgYHtyfQojIyBMb2FkIG5lY2Vzc2FyeSBsaWJyYXJpZXMKbGlicmFyeShkcGx5cikKCiMjIExvYWQgdGhlIGRhdGEKZGYgPC0gcmVhZC5jc3YoIkZTQl9TdXJ2ZXlfRGlydHkuY3N2IikKCiMjIERhdGEgb3ZlcnZpZXcKaGVhZChkZikKCiMjIENoZWNrIG1pc3NpbmcgdmFsdWVzCmNvbFN1bXMoaXMubmEoZGYpKQoKIyMgRGVsZXRlICJYIiB2YXJpYWJsZQpkZiA8LSBkZlstd2hpY2gobmFtZXMoZGYpID09ICJYIildCgojIyBEZWxldGUgY29sdW1ucyBmb3IgIkJCUkoiLCAiU3R1ZHkgQWJyb2FkIENvdXJ0ZXN5IEFjY291bnQiLCBhbmQgIlRyYW5zZmVyIFdvcmsiIGR1ZSB0byBsYWNrIG9mIHVuZGVyc3RhbmRpbmcgYW5kIHJlbGV2YW5jZQpkZiA8LSBkZlssICEobmFtZXMoZGYpICVpbiUgYygiQkJSSiIsIlN0dWR5LkFicm9hZC5Db3VydGVzeS5BY2NvdW50IiwgIlRyYW5zZmVyLldvcmsuLlByZS5CYW5uZXIuIikpXQoKIyMgRGVsZXRlIGNvbHVtbnMgZHVlIHRvIHJlbGV2YW5jZSB0byByZXNlYXJjaCBxdWVzdGlvbgpkZiA8LSBkZlssICEobmFtZXMoZGYpICVpbiUgYygibm1ham9yIiwgIkJ1c2luZXNzLkRpcmVjdC5BZG1pdCIsICJGaXJzdC5HZW5lcmF0aW9uLkNvbGxlZ2UuU3RkbnQiLCAiQ29tYmluZWQuQmFjYy5hbmQuTWFzdGVycyIsICJEZWFuLnMuTGlzdCIsICJGU0IuU2Nob2xhcnMiLCAiSG9ub3JzLlByb2dyYW0iLCAiUHJlc2lkZW50LnMuTGlzdCIsICJDdW0uTGF1ZGUiLCAiTWFnbmEuQ3VtLkxhdWRlIiwgIlN1bW1hLkN1bS5MYXVkZSIsICJVbml2ZXJzaXR5Lkhvbm9ycyIsIlVuaXZlcnNpdHlIb25vcnMudy5EaXN0aW5jdGlvbiIsICJ5ZWFyLngiLCAibGF0aW5faG9ub3JzIiwgInN1cnZleV9ncmFkcHJvZ3JhbSIsICJzdXJ2ZXlfZ3JhZHNjaG9vbCIsIAoic3VydmV5X2ludGVybmZvdXIiLCJzdXJ2ZXlfaW50ZXJub25lIiwgInN1cnZleV9pbnRlcm5zaGlwcyIsICJzdXJ2ZXlfaW50ZXJudGhyZWUiLCAic3VydmV5X2ludGVybnR3byIpKV0KCiMjIENoZWNrIGZvciBjaGFuZ2VzCmhlYWQoZGYpCgojIyBDaGVjayBkaW1lbnNpb25zCmRpbShkZikKCiMjIFJlbW92ZSByb3dzIHRoYXQgY29udGFpbiBhIG51bGwgdmFsdWUgZm9yICJzdXJ2ZXlfc3RhdGUiCmRmIDwtIGRmWyFpcy5uYShkZiRzdXJ2ZXlfc3RhdGUpLCAsIGRyb3AgPSBGQUxTRV0KCiMjIENoZWNrIGRhdGEgYWdhaW4Kc3RyKGRmKQoKIyBGaWxsIG1pc3NpbmcgdmFsdWVzIGluIGNvbHVtbnMgJ3N1cnZleV9jaXR5JywgJ3N1cnZleV9jb21wYW55JywgYW5kICdzdXJ2ZXlfZGVwdGZ1bmMnIHdpdGggIlVua25vd24iCmRmWywgYygic3VydmV5X2NpdHkiLCAic3VydmV5X2NvbXBhbnkiLCAic3VydmV5X2RlcHRmdW5jIildIDwtIGxhcHBseShkZlssIGMoInN1cnZleV9jaXR5IiwgInN1cnZleV9jb21wYW55IiwgInN1cnZleV9kZXB0ZnVuYyIpXSwgZnVuY3Rpb24oeCkgaWZlbHNlKGlzLm5hKHgpLCAiVW5rbm93biIsIHgpKQoKIyBGaWxsIG1pc3NpbmcgdmFsdWVzIGluIGNvbHVtbnMgJ3N1cnZleV9vZmZlcnMnLCAnc3VydmV5X3ByZWZfZmllbGQnLCBhbmQgJ3N1cnZleV9wcmVmX2xvYycgd2l0aCAiTm9uZSIKZGZbLCBjKCJzdXJ2ZXlfb2ZmZXJzIiwgInN1cnZleV9wcmVmX2ZpZWxkIiwgInN1cnZleV9wcmVmX2xvYyIpXSA8LSBsYXBwbHkoZGZbLCBjKCJzdXJ2ZXlfb2ZmZXJzIiwgInN1cnZleV9wcmVmX2ZpZWxkIiwgInN1cnZleV9wcmVmX2xvYyIpXSwgZnVuY3Rpb24oeCkgaWZlbHNlKGlzLm5hKHgpLCAiTm9uZSIsIHgpKQoKIyBGaWxsIG1pc3NpbmcgdmFsdWVzIGluIHRoZSAnc3VydmV5X3NhbGFyeScgY29sdW1uIHdpdGggdGhlIG1lYW4gc2FsYXJ5CmRmJHN1cnZleV9zYWxhcnlbaXMubmEoZGYkc3VydmV5X3NhbGFyeSldIDwtIG1lYW4oZGYkc3VydmV5X3NhbGFyeSwgbmEucm0gPSBUUlVFKQoKIyMgU2F2ZSB0aGUgbW9kaWZpZWQgZGF0YSB0byBhIG5ldyBDU1YgZmlsZQp3cml0ZS5jc3YoZGYsIGZpbGUgPSAiRlNCX1N1cnZleS5jc3YiLCByb3cubmFtZXMgPSBGQUxTRSkKCmBgYAoKIyBFeHBsYW5hdGlvbiBvbiBQcmVwcm9jZXNzIENvZGUKCldlIHN0YXJ0IHdpdGggYW5hbHl6ZSB0aGUgZGF0YSBzdHJ1Y3R1cmUgYW5kIG1pc3NpbmcgdmFsdWVzIGZvciBlYWNoIHZhcmlhYmxlLiBUaGVuIHdlIGRlbGV0ZSBzZXZlcmFsIHZhcmlhYmxlcyB3aGljaCBhcmUgZG9uJ3QgcmVsYXRlIHRvIHRoaXMgcHJvamVjdCBvciBub3QgZXhwbGFpbmVkIGNsZWFybHksIGluY2x1ZGluZyBCQlJKLCBTdHVkeSBBYnJvYWQgQ291cnRlc3kgQWNjb3VudCwgVHJhbnNmZXIgV29yaywgbGF0aW5faG9ub3JzIGFuZCBzbyBvbiB0byBtYWtlIG91ciBhbmFseXNpcyBwcm9jZXNzIGVhc2llci4gQ29udGludW91c2x5LCBmb3IgYWNjdXJhY3kgb2Ygb3VyIGFuYWx5c2lzLCB3ZSByZW1vdmUgdGhlIG1pc3NpbmcgdmFsdWVzIGZyb20gdGhlIHJlc3QgdmFyaWFibGVzIGFuZCBjaGVja2VkIG91ciBkYXRhLiBGaW5hbGx5LCB3ZSBkb2N1bWVudGVkIHRoZSBuZXcgZGF0YSBpbnRvICJGU0JfU3VydmV5LmNzdiIuIFRoaXMgZG9jdW1lbnQgaXMgd2hhdCB3ZSB3aWxsIHVzZSBmb3IgYW5hbHlzaXMuCgojIENvbXB1dGVyaW5nIEVudmlyb25tZW50CgpXZSBydW4gdGhlIGNvZGUgUi5WZXJzaW/vvIjvvIkgdG8gZmlndXJlIG91dCB0aGUgdmVyc2lvbiBvZiByIHN0dWRpbyB0byBlbnN1cmUgb3VyIGNvZGUgY2FuIGJlIHJlcHJvZHVjZS4gQWxzbywgd2Ugd2lsbCB1c2UgdGhlICJGU0JfU3VydmV5X0RpcnR5LmNzdiIgYXMgb3VyIG9yaWdpbmFsIGRvY3VtZW50cyBiZWZvcmUgY2xlYW4gZGF0YS4gQW5kIGtlZXAgYWxsIGNvZGVzIGZvciBjbGVhbmluZyBkYXRhIGluIHRoaXMgZmlsZSBhbmQgZG9jdW1lbnQgdGhvc2UgbmV3IGRhdGEgaW50byAiRlNCX1N1cnZleS5jc3YiLiBUaHVzLCB3ZSBjYW4gcmVydW4gdGhlIGNvZGUgdG8gZW5zdXJlIHJlcHJvZHVjdGlibGUuCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiU3R1ZGVudCBTdWNjZXNzIC0gY2xlYW4gZGF0YSIKYXV0aG9yOiAiSmVtbWEgTWFyY3VzLVNoaSAmIExpbmppZSBaaHUiCmRhdGU6ICJgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVkICVCLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICBjb2RlX2ZvbGRpbmc6IHNob3cKICAgIGRmX3ByaW50OiBwYWdlZAogICAgbnVtYmVyX3NlY3Rpb25zOiB5ZXMKICAgIHRoZW1lOiByZWFkYWJsZQogICAgdG9jOiB5ZXMKICAgIHRvY19mbG9hdDogeWVzCiAgICBjb2RlX2Rvd25sb2FkOiB5ZXMKICB3b3JkX2RvY3VtZW50OgogICAgdG9jOiBubwotLS0KCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKIyBBdWRpZW5jZSBhbmQgUHVycG9zZQoKVGhlIHB1cnBvc2Ugb2Ygb3VyIHByb2plY3QgaXMgdG8gaGVscCBNci4gS2lyayBCb2dhcmQgcmFpc2UgZnVuZHMgZm9yIEZhcm1lciBTY2hvb2wgb2YgQnVzaW5lc3MuIFdlIHdpbGwgY3JlYXRlIHNldmVyYWwgbWFwcyB0byBjbGVhcmx5IHNob3cgY29tcGFuaWVzIGluIHJlZ2lvbnMgd2hlcmUgaXQgaXMgdmFsdWFibGUgdG8gdHJ5IHRvIGJ1aWxkIGV4dGVybmFsIHJlbGF0aW9uc2hpcHMuIFRoZSBhdWRpZW5jZSBvZiBvdXIgcHJvamVjdCBhcmUgc2hhcmVkIHdvcmsgcHJvZHVjZXJzIGluY2x1ZGluZyB0aGUgdGVhbSBvZiBwZW9wbGUgd2hvIGRvIHRoZSBzYW1lIGpvYiBhcyBNci4gS2lyayBCb2dhcmQsIHVzZXJzIHdobyBuZWVkIHRvIGtub3cgaG93IGl0IGlzIGRvbmUsIGFuZCBob3cgdG8gZG8gaXQgYmV0dGVyLgoKIyBWYWx1ZSBQcm9wb3NpdGlvbgoKIVtdKHBvc3RlciUyMFZhbHVlJTIwcHJvcG9zaXRpb24lMjBjYW52YXMlMjBzaW1wbGUlMjB3aGl0ZS5wbmcpCgojIyBEYXRhIERlc2NyaXB0aW9uCgpPdXIgZ3JvdXAgd2lsbCBiZSB1c2luZyB0aGUgRlNCIGRhdGEgb24gdGhlIGVtcGxveW1lbnQgc3RhdHVzIG9mIGdyYWR1YXRlcyBpbiBvcmRlciB0byBmaW5kIGluZm9ybWF0aW9uIGFib3V0IGdlb2dyYXBoaWMgdHJlbmRzLiBUaGUgZGF0YSBmaWxlIGluY2x1ZGVzIHN1cnZleSBkYXRhIG9uIHdoZXJlIHN0dWRlbnRzIGFyZSBnb2luZywgd2hhdCBzdHVkZW50cycgc2FsYXJpZXMgYXJlLCBhbmQgam9iIG9wcG9ydHVuaXRpZXMgaW4gZGlmZmVyZW50IHJlZ2lvbnMgYmV0d2VlbiAyMDE5IHRvIDIwMjEuCgojIERvY3VtZW50ZWQgQ29kZSB0byBQcmVwcm9jZXNzZXMgRGF0YQoKVGhlIGNvZGUgd2FzIG9yaWdpbmFsbHkgd3JpdHRlbiBpbiBweXRob24gaW4gYSBzZWN1cmUgRlNCIEp1cHl0ZXIgU2VydmVyIGFuZCB0cmFuc2xhdGVkIHRvIGJlIHVzZWQgaW4gUiBzdHVkaW8uIAoKIyMjIyMgVGhlIG5lY2Vzc2FyeSBsaWJyYXJpZXMgYXJlIGxvYWRlZCBpbnRvIFIgey19CmBgYHtyfQpsaWJyYXJ5KGRwbHlyKQpgYGAKCiMjIyMjIFRoZSBkYXRhIGlzIGxvYWRlZCBhbmQgZGlzcGxheWVkIHRvIGNoZWNrIHRoZSBzdWNjZXNzIG9mIHRoZSBsb2FkaW5nIHstfQpgYGB7cn0KZGYgPC0gcmVhZC5jc3YoIkZTQl9TdXJ2ZXlfRGlydHkuY3N2IikKaGVhZChkZikKYGBgCgojIyMjIyBNaXNzaW5nIHZhbHVlcyBhcmUgZXZhbHVhdGVkIHstfQpgYGB7cn0KY29sU3Vtcyhpcy5uYShkZikpCmBgYAojIyMjIyBBbiBleHRyYSBpbmRleCAiWCIgaXMgcmVtb3ZlZCB7LX0KYGBge3J9CmRmIDwtIGRmWy13aGljaChuYW1lcyhkZikgPT0gIlgiKV0KYGBgCiMjIyMjIFZhcmlhYmxlcyBhcmUgcmVtb3ZlZCBkdWUgdG8gbGFjayBvZiB1bmRlcnN0YW5kaW5nLCBtaXNzaW5nIHZhbHVlcywgYW5kIHJlbGV2YW5jZSB7LX0KYGBge3J9CiMgVmFyaWFibGVzICJCQlJKIiwgIlN0dWR5IEFicm9hZCBDb3VydGVzeSBBY2NvdW50IiwgYW5kICJUcmFuc2ZlciBXb3JrIiBhcmUgcmVtb3ZlZCBkdWUgdG8gbGFjayBvZiB1bmRlcnN0YW5kaW5nIGFuZCBtaXNzaW5nIHZhcmlhYmxlcwoKZGYgPC0gZGZbLCAhKG5hbWVzKGRmKSAlaW4lIGMoIkJCUkoiLCJTdHVkeS5BYnJvYWQuQ291cnRlc3kuQWNjb3VudCIsICJUcmFuc2Zlci5Xb3JrLi5QcmUuQmFubmVyLiIpKV0KCiMgVmFyaWFibGVzIHdpdGhvdXQgcmVsZXZhbmNlIHRvIHRoZSByZXNlYXJjaCBxdWVzdGlvbiBhcmUgcmVtb3ZlZAoKZGYgPC0gZGZbLCAhKG5hbWVzKGRmKSAlaW4lIGMoIm5tYWpvciIsICJCdXNpbmVzcy5EaXJlY3QuQWRtaXQiLCAiRmlyc3QuR2VuZXJhdGlvbi5Db2xsZWdlLlN0ZG50IiwgIkNvbWJpbmVkLkJhY2MuYW5kLk1hc3RlcnMiLCAiRGVhbi5zLkxpc3QiLCAiRlNCLlNjaG9sYXJzIiwgIkhvbm9ycy5Qcm9ncmFtIiwgIlByZXNpZGVudC5zLkxpc3QiLCAiQ3VtLkxhdWRlIiwgIk1hZ25hLkN1bS5MYXVkZSIsICJTdW1tYS5DdW0uTGF1ZGUiLCAiVW5pdmVyc2l0eS5Ib25vcnMiLCJVbml2ZXJzaXR5SG9ub3JzLncuRGlzdGluY3Rpb24iLCAieWVhci54IiwgImxhdGluX2hvbm9ycyIsICJzdXJ2ZXlfZ3JhZHByb2dyYW0iLCAic3VydmV5X2dyYWRzY2hvb2wiLCAic3VydmV5X2ludGVybmZvdXIiLCJzdXJ2ZXlfaW50ZXJub25lIiwgInN1cnZleV9pbnRlcm5zaGlwcyIsICJzdXJ2ZXlfaW50ZXJudGhyZWUiLCAic3VydmV5X2ludGVybnR3byIpKV0KYGBgCgojIyMjIyBUaGUgZGF0YSBpcyBkaXNwbGF5ZWQgYWdhaW4gYW5kIHRoZSBkaW1lbnNpb25zIGFyZSBjaGVja2VkIHRvIGNvbmZpcm0gcmVtb3ZhbCBvZiB2YXJpYWJsZXMgey19CmBgYHtyfQpoZWFkKGRmKQpkaW0oZGYpCmBgYAoKIyMjIyMgUm93cyB0aGF0IGNvbnRhaW4gYSBudWxsIHZhbHVlIGZvciAic3VydmV5X3N0YXRlIiBhcmUgcmVtb3ZlZCB7LX0KYGBge3J9CmRmIDwtIGRmWyFpcy5uYShkZiRzdXJ2ZXlfc3RhdGUpLCAsIGRyb3AgPSBGQUxTRV0KYGBgCiMjIyMjIFRoZSBkYXRhIGlzIGNoZWNrZWQgZm9yIHJlbWFpbmluZyBudWxsIHZhbHVlcyB7LX0KYGBge3J9CnN0cihkZikKYGBgCiMjIyMjIE51bGwgdmFsdWVzIGFyZSBpbXB1dGVkIHstfQpgYGB7cn0KIyBNaXNzaW5nIHZhbHVlcyBpbiB2YXJpYWJsZXMgJ3N1cnZleV9jaXR5JywgJ3N1cnZleV9jb21wYW55JywgYW5kICdzdXJ2ZXlfZGVwdGZ1bmMnIGFyZSBpbXB1dGVkIHdpdGggIlVua25vd24iCgpkZlssIGMoInN1cnZleV9jaXR5IiwgInN1cnZleV9jb21wYW55IiwgInN1cnZleV9kZXB0ZnVuYyIpXSA8LSBsYXBwbHkoZGZbLCBjKCJzdXJ2ZXlfY2l0eSIsICJzdXJ2ZXlfY29tcGFueSIsICJzdXJ2ZXlfZGVwdGZ1bmMiKV0sIGZ1bmN0aW9uKHgpIGlmZWxzZShpcy5uYSh4KSwgIlVua25vd24iLCB4KSkKCiMgTWlzc2luZyB2YWx1ZXMgaW4gdmFyaWFibGVzICdzdXJ2ZXlfb2ZmZXJzJywgJ3N1cnZleV9wcmVmX2ZpZWxkJywgYW5kICdzdXJ2ZXlfcHJlZl9sb2MnIGFyZSBpbXB1dGVkIHdpdGggIk5vbmUiCgpkZlssIGMoInN1cnZleV9vZmZlcnMiLCAic3VydmV5X3ByZWZfZmllbGQiLCAic3VydmV5X3ByZWZfbG9jIildIDwtIGxhcHBseShkZlssIGMoInN1cnZleV9vZmZlcnMiLCAic3VydmV5X3ByZWZfZmllbGQiLCAic3VydmV5X3ByZWZfbG9jIildLCBmdW5jdGlvbih4KSBpZmVsc2UoaXMubmEoeCksICJOb25lIiwgeCkpCgojIFRoZSBtaXNzaW5nIHZhbHVlcyBpbiB0aGUgJ3N1cnZleV9zYWxhcnknIHZhcmlhYmxlIGFyZSBpbXB1dGVkIHdpdGggdGhlIG1lYW4gc2FsYXJ5CgpkZiRzdXJ2ZXlfc2FsYXJ5W2lzLm5hKGRmJHN1cnZleV9zYWxhcnkpXSA8LSBtZWFuKGRmJHN1cnZleV9zYWxhcnksIG5hLnJtID0gVFJVRSkKYGBgCiMjIyMjIFRoZSBkYXRhIGlzIGNoZWNrZWQgZm9yIHJlbWFpbmluZyBudWxsIHZhbHVlcyB7LX0KYGBge3J9CnN0cihkZikKYGBgCiMjIyMjIFRoZSBtb2RpZmllZCBkYXRhIGlzIHNhdmVkIHRvIGEgbmV3IENTViBmaWxlIHstfQpgYGB7cn0Kd3JpdGUuY3N2KGRmLCBmaWxlID0gIkZTQl9TdXJ2ZXkuY3N2Iiwgcm93Lm5hbWVzID0gRkFMU0UpCmBgYAoKIyBFeHBsYW5hdGlvbiBvbiBQcmVwcm9jZXNzIENvZGUKCldlIHN0YXJ0IHdpdGggYW5hbHl6ZSB0aGUgZGF0YSBzdHJ1Y3R1cmUgYW5kIG1pc3NpbmcgdmFsdWVzIGZvciBlYWNoIHZhcmlhYmxlLiBUaGVuIHdlIGRlbGV0ZSBzZXZlcmFsIHZhcmlhYmxlcyB3aGljaCBhcmUgZG9uJ3QgcmVsYXRlIHRvIHRoaXMgcHJvamVjdCBvciBub3QgZXhwbGFpbmVkIGNsZWFybHksIGluY2x1ZGluZyBCQlJKLCBTdHVkeSBBYnJvYWQgQ291cnRlc3kgQWNjb3VudCwgVHJhbnNmZXIgV29yaywgbGF0aW5faG9ub3JzIGFuZCBzbyBvbiB0byBtYWtlIG91ciBhbmFseXNpcyBwcm9jZXNzIGVhc2llci4gQ29udGludW91c2x5LCBmb3IgYWNjdXJhY3kgb2Ygb3VyIGFuYWx5c2lzLCB3ZSByZW1vdmUgdGhlIG1pc3NpbmcgdmFsdWVzIGZyb20gdGhlIHJlc3QgdmFyaWFibGVzIGFuZCBjaGVja2VkIG91ciBkYXRhLiBGaW5hbGx5LCB3ZSBkb2N1bWVudGVkIHRoZSBuZXcgZGF0YSBpbnRvICJGU0JfU3VydmV5LmNzdiIuIFRoaXMgZG9jdW1lbnQgaXMgd2hhdCB3ZSB3aWxsIHVzZSBmb3IgYW5hbHlzaXMuCgojIENvbXB1dGVyaW5nIEVudmlyb25tZW50CgpXZSBydW4gdGhlIGNvZGUgUi5WZXJzaW/vvIjvvIkgdG8gZmlndXJlIG91dCB0aGUgdmVyc2lvbiBvZiByIHN0dWRpbyB0byBlbnN1cmUgb3VyIGNvZGUgY2FuIGJlIHJlcHJvZHVjZS4gQWxzbywgd2Ugd2lsbCB1c2UgdGhlICJGU0JfU3VydmV5X0RpcnR5LmNzdiIgYXMgb3VyIG9yaWdpbmFsIGRvY3VtZW50cyBiZWZvcmUgY2xlYW4gZGF0YS4gQW5kIGtlZXAgYWxsIGNvZGVzIGZvciBjbGVhbmluZyBkYXRhIGluIHRoaXMgZmlsZSBhbmQgZG9jdW1lbnQgdGhvc2UgbmV3IGRhdGEgaW50byAiRlNCX1N1cnZleS5jc3YiLiBUaHVzLCB3ZSBjYW4gcmVydW4gdGhlIGNvZGUgdG8gZW5zdXJlIHJlcHJvZHVjdGlibGUuCg==</div>
 
 
 </div>
