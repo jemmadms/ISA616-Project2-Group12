@@ -77,4 +77,4 @@ We start with analyze the data structure and missing values for each variable. T
 
 # Computering Environment
 
-We run the code R.Version to figure out the version of r studio to ensure our code can be reproduce. Also, we will use the "FSB_Survey_Dirty.csv" as our original documents before clean data. And keep all codes for cleaning data in this file and document those new data into "FSB_Survey.csv". Thus, we can rerun the code to ensure reproductible.
+We run the code R.Versio（） to figure out the version of r studio to ensure our code can be reproduce. Also, we will use the "FSB_Survey_Dirty.csv" as our original documents before clean data. And keep all codes for cleaning data in this file and document those new data into "FSB_Survey.csv". Thus, we can rerun the code to ensure reproductible.
