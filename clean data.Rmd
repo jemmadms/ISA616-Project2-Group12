@@ -31,30 +31,37 @@ The purpose of our project is to help Mr. Kirk Bogard raise funds for Farmer Sch
 
 Our group will be using the FSB data on the employment status of graduates in order to find information about geographic trends. The data file includes survey data on where students are going, what students' salaries are, and job opportunities in different regions between 2019 to 2021.
 
-# Documented Code to Preprocesses Data
+# Documented Code to Clean Data
 
-The code was originally written in python in a secure FSB Jupyter Server and translated to be used in R studio. 
+The code was originally written in python in a secure FSB Jupyter Server and translated to be used in R studio.
 
-##### The necessary libraries are loaded into R {-}
+##### The necessary libraries are loaded into R {.unnumbered}
+
 ```{r}
 library(dplyr)
 ```
 
-##### The data is loaded and displayed to check the success of the loading {-}
+##### The data is loaded and displayed to check the success of the loading {.unnumbered}
+
 ```{r}
 df <- read.csv("FSB_Survey_Dirty.csv")
 head(df)
 ```
 
-##### Missing values are evaluated {-}
+##### Missing values are evaluated {.unnumbered}
+
 ```{r}
 colSums(is.na(df))
 ```
-##### An extra index "X" is removed {-}
+
+##### An extra index "X" is removed {.unnumbered}
+
 ```{r}
 df <- df[-which(names(df) == "X")]
 ```
-##### Variables are removed due to lack of understanding, missing values, and relevance {-}
+
+##### Variables are removed due to lack of understanding, missing values, and relevance {.unnumbered}
+
 ```{r}
 # Variables "BBRJ", "Study Abroad Courtesy Account", and "Transfer Work" are removed due to lack of understanding and missing variables
 
@@ -65,21 +72,27 @@ df <- df[, !(names(df) %in% c("BBRJ","Study.Abroad.Courtesy.Account", "Transfer.
 df <- df[, !(names(df) %in% c("nmajor", "Business.Direct.Admit", "First.Generation.College.Stdnt", "Combined.Bacc.and.Masters", "Dean.s.List", "FSB.Scholars", "Honors.Program", "President.s.List", "Cum.Laude", "Magna.Cum.Laude", "Summa.Cum.Laude", "University.Honors","UniversityHonors.w.Distinction", "year.x", "latin_honors", "survey_gradprogram", "survey_gradschool", "survey_internfour","survey_internone", "survey_internships", "survey_internthree", "survey_interntwo"))]
 ```
 
-##### The data is displayed again and the dimensions are checked to confirm removal of variables {-}
+##### The data is displayed again and the dimensions are checked to confirm removal of variables {.unnumbered}
+
 ```{r}
 head(df)
 dim(df)
 ```
 
-##### Rows that contain a null value for "survey_state" are removed {-}
+##### Rows that contain a null value for "survey_state" are removed {.unnumbered}
+
 ```{r}
 df <- df[!is.na(df$survey_state), , drop = FALSE]
 ```
-##### The data is checked for remaining null values {-}
+
+##### The data is checked for remaining null values {.unnumbered}
+
 ```{r}
 str(df)
 ```
-##### Null values are imputed {-}
+
+##### Null values are imputed {.unnumbered}
+
 ```{r}
 # Missing values in variables 'survey_city', 'survey_company', and 'survey_deptfunc' are imputed with "Unknown"
 
@@ -93,19 +106,27 @@ df[, c("survey_offers", "survey_pref_field", "survey_pref_loc")] <- lapply(df[, 
 
 df$survey_salary[is.na(df$survey_salary)] <- mean(df$survey_salary, na.rm = TRUE)
 ```
-##### The data is checked for remaining null values {-}
+
+##### The data is checked for remaining null values {.unnumbered}
+
 ```{r}
 str(df)
 ```
-##### The modified data is saved to a new CSV file {-}
+
+##### The modified data is saved to a new CSV file {.unnumbered}
+
 ```{r}
 write.csv(df, file = "FSB_Survey.csv", row.names = FALSE)
 ```
 
-# Explanation on Preprocess Code
+# Explanation of Cleaning the Data
 
-We start with analyze the data structure and missing values for each variable. Then we delete several variables which are don't relate to this project or not explained clearly, including BBRJ, Study Abroad Courtesy Account, Transfer Work, latin_honors and so on to make our analysis process easier. Continuously, for accuracy of our analysis, we remove the missing values from the rest variables and checked our data. Moreover, for some variables like 'survey_offers', 'survey_cities' relate to our analysis, we impute them with "Unkown" or "None". Finally, we documented the new data into "FSB_Survey.csv". This document is what we will use for analysis.
+We started by getting an overview the data structure and missing values for each variable. Then, we deleted several variables which do not relate to our project or are not clear enough to be useful, including BBRJ, Study Abroad Courtesy Account, Transfer Work, latin_honors and 25 others. We deleted these variables because they were not relevant to our research question. We then removed the rows that contained missing values for the state the job was in, as no information could be gathered for the project without this information. . For some variables such as 'survey_offers', 'survey_cities' we imputed them with "Unknown" or "None" to make clear the meaning of the null values. We also imputed the salary with the mean in preparation for the possibility of using that variable for further analysis requiring numeric data. Finally, we exported the cleaned data into "FSB_Survey.csv" in order to use for future analysis.
 
-# Computering Environment
+# Computing Environment
 
-We run the code R.Version（） to figure out the version of r studio to ensure our code can be reproduce. Also, we will use the "FSB_Survey_Dirty.csv" as our original documents before clean data. And keep all codes for cleaning data in this file and document those new data into "FSB_Survey.csv". Thus, we can rerun the code to ensure reproductible.
+```{r}
+R.Version()
+```
+
+We ran the code R.Version（）to determine the version of r studio used to ensure our code can be reproduced. We have also saved our original file "FSB_Survey_Dirty.csv". Thus, we can rerun the code in the future to ensure reproducibility.
