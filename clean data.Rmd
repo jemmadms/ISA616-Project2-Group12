@@ -1,7 +1,7 @@
 ---
-title: Student Success - clean data
-author: Jemma Marcus-Shi & Linjie Zhu
-date: "2023-10-03"
+title: "Student Success - clean data"
+author: "Jemma Marcus-Shi & Linjie Zhu"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   html_document:
     code_folding: show
@@ -19,12 +19,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
 # Audience and Purpose
 
 The purpose of our project is to help Mr. Kirk Bogard raise fund for Farmer School of Business. We will create several maps to clearly show companies in which region are more valuable to try to build external relationships. Audience of our project is shared work producers including people who do the same job as Mr. Kirk Bogard in a team, users who need to know how it done and how to done it better.
@@ -38,6 +32,7 @@ The purpose of our project is to help Mr. Kirk Bogard raise fund for Farmer Scho
 Our group will be using the FSB data on the employment status of graduates in order to find information about geographic trends The data file is includes survey data on where students are going, what are students' salaries, job opportunities in each region between 2019 to 2021.
 
 # Documented Code to Preprocesses Data
+
 ```{r}
 ## Load necessary libraries
 library(dplyr)
@@ -89,7 +84,7 @@ write.csv(df, file = "FSB_Survey.csv", row.names = FALSE)
 
 # Explanation on Preprocess Code
 
-We start with analyze the data structure and missing values for each variable. Then we delete several variables which are don't relate to this project or not explained clearly, including BBRJ, Study Abroad Courtesy Account, Transfer Work, latin_honors and so on to make our analysis process easier. Continuously, for accuracy of our analysis, we remove the missing values from the rest variables and checked our data. Finally, we documented the new data into "FSB_Survey.csv". This document is what we will use for analysis. 
+We start with analyze the data structure and missing values for each variable. Then we delete several variables which are don't relate to this project or not explained clearly, including BBRJ, Study Abroad Courtesy Account, Transfer Work, latin_honors and so on to make our analysis process easier. Continuously, for accuracy of our analysis, we remove the missing values from the rest variables and checked our data. Finally, we documented the new data into "FSB_Survey.csv". This document is what we will use for analysis.
 
 # Computering Environment
 
