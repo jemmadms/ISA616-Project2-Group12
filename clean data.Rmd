@@ -43,7 +43,7 @@ Our group will be using the FSB data on the employment status of graduates in or
 library(dplyr)
 
 ## Load the data
-df <- read.csv("FSB_Survey_Dirty.csv")  # Replace "your_data.csv" with your actual file path
+df <- read.csv("FSB_Survey_Dirty.csv")
 
 ## Data overview
 head(df)
@@ -57,6 +57,14 @@ df <- df[-which(names(df) == "X")]
 ## Delete columns for "BBRJ", "Study Abroad Courtesy Account", and "Transfer Work" due to lack of understanding and relevance
 df <- df[, !(names(df) %in% c("BBRJ","Study.Abroad.Courtesy.Account", "Transfer.Work..Pre.Banner."))]
 
+##
+df <- df[, !(names(df) %in%select(-nmajor, -`Business Direct Admit`, -`First Generation College Stdnt`, 
+         -`Combined Bacc and Masters`, -`Dean's List`, -`FSB Scholars`, 
+         -`Honors Program`, -`President's List`, -`Cum Laude`, -`Magna Cum Laude`, 
+         -`Summa Cum Laude`, -`University Honors`, -`UniversityHonors w/Distinction`, 
+         -year.x, -latin_honors, -survey_gradprogram, -survey_gradschool, 
+         -survey_internfour, -survey_internone, -survey_internships, 
+         -survey_internthree, -survey_interntwo)
 ## Check for changes
 head(df)
 
