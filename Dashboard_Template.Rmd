@@ -53,3 +53,134 @@ Overview of survey responses
 rate = round(100*nrow(internraw)/800,0)
 gauge(rate, min=0, max = 100, symbol = '%', gaugeSectors(success = c(80,100), warning=c(40,79), danger = c(0, 39)))
 ```
+### Usable Responses
+
+```{r,echo=FALSE}
+nusable = nrow(internraw)
+valueBox(nusable, icon="fa-users")
+# you can find the icons here:https://fontawesome.com/icons
+# note that I have been unable to get all icons to work
+```
+
+### Class Rank
+
+```{r,echo=FALSE}
+p = ggplot(internraw, aes(x=classrank))+
+  geom_bar(color="deeppink", fill = "deeppink")+
+  xlab("Class Rank")+
+  ylab("Numberof Responses")+
+  theme_bw()
+ggplotly(p)
+```
+
+## row {data-height="600"}
+
+### Internship Breakdown
+
+```{r,echo=FALSE}
+p = ggplot(internraw,aes(reorder(intern_status, intern_status, function(x)-length(x))))+
+  geom_bar(color="deeppink", fill = "deeppink")+
+  xlab("Internship Status")+
+  ylab("Number of Responses")+
+  theme_bw()
+ggplotly(p)
+```
+
+### Responses by Primary Major
+
+```{r,echo=FALSE}
+p = internraw %>%
+  ggplot(aes(x=reorder(major_1,major_1,function(x)-length(x))))+
+  geom_bar(color="deeppink", fill = "deeppink")+
+  xlab("Internship Status")+
+  ylab("Number of Responses")+
+  theme_bw()
+p
+```
+
+# Internships by Majors {data-orientation="columns"}
+
+```{r}
+
+```
+
+## Column {data-width="400"}
+
+### Internship Status by Major
+
+```{r,echo=FALSE}
+p=internraw %>% 
+  ggplot(aes(x=reorder(major_1, major_1,function(x)-length(x)),fill=intern_status))+
+  geom_bar(color="deeppink")+
+  xlab("Primary Major")+
+  ylab("Number of Responses")+
+  theme_bw()+
+  theme(axis.text.x=element_text(angle=90))
+ggplotly(p)
+```
+
+### Internship Status by Career Fair Attendance
+
+```{r,echo=FALSE}
+p = internraw %>%
+  mutate(careerfair_status=fct_relevel(careerfair_status,"Fall","Spring", "Both", "Neither")) %>% 
+  ggplot(aes(x=careerfair_status,fill=intern_status))+
+  geom_bar(color="deeppink", fill = "deeppink")+
+  xlab("Career Fair Status")+
+  ylab("Number of Responses")+
+  theme_bw()
+p
+```
+
+## Column {data-width="600"}
+
+### Internship Status by Career Fair Attendance-All Majors
+
+```{r,echo=FALSE}
+p = internraw %>%
+  mutate(careerfair_status=fct_relevel(careerfair_status,"Fall","Spring", "Both", "Neither")) %>% 
+  ggplot(aes(x=careerfair_status,fill=intern_status))+
+  geom_bar(color="deeppink", fill = "deeppink")+
+  xlab("Career Fair Status")+
+  ylab("Number of Responses")+
+  theme_bw()
+  theme(axis.text.x=element_text(angle=90))
+  facet_wrap(~major_1,ncol=2)
+p
+```
+
+# Firms that Hire Interns {data-orientation="columns"}
+
+## Column {data-width="500"}
+
+### Employers Hiring Paid Interns by Major
+
+```{r,echo=FALSE}
+data=internraw %>% 
+  filter(intern_status =="Yes") %>% 
+  filter(pay_status=="Yes") %>%
+  group_by(employer,major_1,classrank) %>%
+  summarize(count=n()) %>% 
+  arrange(major_1,-count) #arrange in descending order based on the size of the major
+
+data$employer=fct_explicit_na(data$employer,"unknown") #replace nulls with "unknown" (seems to be a fillna() python alternative)
+
+#rownames=F(alse) is to remove numbered rows
+#filter=list(position='bottom',clear=F,plain=T) gives the filter boxes at the bottom
+datatable(data,rownames=F,extensions='Buttons',
+          options=list(dom='Bfrtip',
+                       buttons=c('copy','csv','excel')
+                       ),
+          filter=list(position='bottom',
+                      clear=F,plain=T
+                      )
+          ) 
+```
+
+## Column {data-width="500"}
+
+### Add Another Chart Here
+
+```{r}
+
+```
