@@ -84,7 +84,7 @@ write.csv(df, file = "FSB_Survey.csv", row.names = FALSE)
 
 # Explanation on Preprocess Code
 
-We start with analyze the data structure and missing values for each variable. Then we delete several variables which are don't relate to this project or not explained clearly, including BBRJ, Study Abroad Courtesy Account, Transfer Work, latin_honors and so on to make our analysis process easier. Continuously, for accuracy of our analysis, we remove the missing values from the rest variables and checked our data. Finally, we documented the new data into "FSB_Survey.csv". This document is what we will use for analysis.
+We start with analyze the data structure and missing values for each variable. Then we delete several variables which are don't relate to this project or not explained clearly, including BBRJ, Study Abroad Courtesy Account, Transfer Work, latin_honors and so on to make our analysis process easier. Continuously, for accuracy of our analysis, we remove the missing values from the rest variables and checked our data. Moreover, for some variables like 'survey_offers', 'survey_cities' relate to our analysis, we impute them with "Unkown" or "None". Finally, we documented the new data into "FSB_Survey.csv". This document is what we will use for analysis.
 
 # Computering Environment
 
