@@ -7,15 +7,15 @@ output:
     orientation: rows
 ---
 
-# Questions and Written Insights
+# Questions and Written Insights 
 
-Question 1: students' average salary by region/state
+### Question 1: Students' average salary by region/state
 
-We will calculate the average salary for students by state or region, depending on the difference we find after analysis.
+We will calculate the average salary for students by state or region, depending on the differences we find after analysis.
 
-Question 2: city rank by job opportunities
+### Question 2: City rank by job opportunities
 
-We will summarize the number of students employed by city and rank those cities by frequency. Thus, we could find which cities give our students the most job opportunities. It will also allow our client to be aware of which cities should be the focus of fundraising efforts. 
+We will summarize the number of students employed by city and rank those cities by frequency. Thus, we can find which cities give our students the most job opportunities. It will also allow our client to be aware of which cities should be the focus of fundraising efforts. 
 
 # Region/State by Average Salaries {data-orientation="columns"}
 
