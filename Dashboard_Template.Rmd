@@ -38,7 +38,7 @@ We will summarize the number of students employed by city and rank those cities 
 
 ```
 
-## column {data-width="400"}
+## Column {data-width="400"}
 
 ### Add Bar Charts
 
