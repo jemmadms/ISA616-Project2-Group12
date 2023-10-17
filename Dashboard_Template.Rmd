@@ -21,6 +21,19 @@ We will summarize the number of students employed by city and rank those cities 
 
 ```{r,echo=FALSE}
 
+grouped_data <- data %>%
+  group_by(State)
+
+average_salary_by_state <- grouped_data %>%
+  summarize(AvgSalary = mean(Salary))
+
+state_salaries <- data.frame(
+  state = c("New York", "California", "Texas", "Florida"),
+  avg_salary = average_salary_by_state
+)
+
+library(dplyr)
+merged_data <- left_join(states_data, state_salaries, by = "state")
 ```
 
 ## Column {data-width="400"}
@@ -28,7 +41,10 @@ We will summarize the number of students employed by city and rank those cities 
 ### Add Bar Charts and/or Scatterplot Map to show Highest Region/State
 
 ```{r,echo=FALSE}
-
+ggplot(merged_data, aes(x = long, y = lat, group = group, fill = avg_salary)) +
+  geom_polygon() +
+  scale_fill_gradient(low = "lightblue", high = "darkblue") +
+  labs(title = "Average Salaries by State")
 ```
 
 
