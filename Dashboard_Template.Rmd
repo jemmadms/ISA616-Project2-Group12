@@ -25,6 +25,10 @@ getwd()
 # Region/State by Average Salaries {data-orientation="columns"}
 
 ```{r,echo=FALSE}
+library(dplyr)
+library(readr)
+library(magrittr)
+
 data <- read.csv('FSB_Survey1.csv')
 
 grouped_data <- data %>%
