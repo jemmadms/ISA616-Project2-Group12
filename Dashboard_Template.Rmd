@@ -17,18 +17,24 @@ We will calculate the average salary for students by state or region, depending 
 
 We will summarize the number of students employed by city and rank those cities by frequency. Thus, we can find which cities give our students the most job opportunities. It will also allow our client to be aware of which cities should be the focus of fundraising efforts. 
 
+```{r}
+getwd()
+```
+
+
 # Region/State by Average Salaries {data-orientation="columns"}
 
 ```{r,echo=FALSE}
+data <- read.csv('FSB_Survey1.csv')
 
 grouped_data <- data %>%
-  group_by(State)
-
+  group_by(survey_state)
+  
 average_salary_by_state <- grouped_data %>%
-  summarize(AvgSalary = mean(Salary))
+  summarize(AvgSalary = mean(survey_salary))
 
 state_salaries <- data.frame(
-  state = c("New York", "California", "Texas", "Florida"),
+  state = grouped_data,
   avg_salary = average_salary_by_state
 )
 
