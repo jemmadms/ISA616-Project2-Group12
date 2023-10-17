@@ -51,7 +51,15 @@ ggplot(merged_data, aes(x = long, y = lat, group = group, fill = avg_salary)) +
 # City Rank by Job Opportunities {data-orientation="columns"}
 
 ```{r}
+library(dplyr)
 
+offers_by_city <- data %>%
+  group_by(City) %>%
+  summarize(Offer_Count = n())
+
+ranked_offers <- offers_by_city %>%
+  arrange(desc(Offer_Count)) %>%
+  mutate(Rank = row_number())
 ```
 
 ## Column {data-width="400"}
@@ -59,7 +67,12 @@ ggplot(merged_data, aes(x = long, y = lat, group = group, fill = avg_salary)) +
 ### Add Bar Charts
 
 ```{r,echo=FALSE}
+library(ggplot2)
 
+ggplot(ranked_offers, aes(x = reorder(City, -Rank), y = Offer_Count)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  labs(title = "Ranked Job Offers by City", x = "City", y = "Offer Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
 
