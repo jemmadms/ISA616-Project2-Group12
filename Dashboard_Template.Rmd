@@ -40,10 +40,21 @@ grouped_data <- data %>%
 ### Add Bar Charts and/or Scatterplot Map to show Highest Region/State
 
 ```{r,echo=FALSE}
-ggplot(merged_data, aes(x = lng, y = lat, group = group, fill = avg_salary)) +
-  geom_polygon() +
-  scale_fill_gradient(low = "lightblue", high = "darkblue") +
-  labs(title = "Average Salaries by State")
+library(ggplot2)
+
+# Sort the grouped data by AvgSalary in descending order
+grouped_data <- grouped_data %>%
+  arrange(desc(AvgSalary))
+
+# Take the top 10 states
+top_10_states <- head(grouped_data, 10)
+
+# Create a bar chart for the top 10 states
+ggplot(top_10_states, aes(x = reorder(survey_state, -AvgSalary), y = AvgSalary)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(x = "State", y = "Average Salary") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
 
