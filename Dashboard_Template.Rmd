@@ -17,11 +17,6 @@ We will calculate the average salary for students by state or region, depending 
 
 We will summarize the number of students employed by city and rank those cities by frequency. Thus, we can find which cities give our students the most job opportunities. It will also allow our client to be aware of which cities should be the focus of fundraising efforts. 
 
-```{r}
-getwd()
-```
-
-
 # Region/State by Average Salaries {data-orientation="columns"}
 
 ```{r,echo=FALSE}
@@ -30,18 +25,22 @@ library(readr)
 library(magrittr)
 
 data <- read.csv('FSB_Survey1.csv')
+colnames(data)[colnames(data) == "survey_city"] <- "city"
+cities = read.csv('uscities.csv')
+city_loc <- cities[, c("city", "state_id", "lat", "lng")]
 
 grouped_data <- data %>%
   group_by(survey_state) %>% 
   summarize(AvgSalary = mean(survey_salary))
 ```
 
+
 ## Column {data-width="400"}
 
 ### Add Bar Charts and/or Scatterplot Map to show Highest Region/State
 
 ```{r,echo=FALSE}
-ggplot(merged_data, aes(x = long, y = lat, group = group, fill = avg_salary)) +
+ggplot(merged_data, aes(x = lng, y = lat, group = group, fill = avg_salary)) +
   geom_polygon() +
   scale_fill_gradient(low = "lightblue", high = "darkblue") +
   labs(title = "Average Salaries by State")
@@ -52,6 +51,7 @@ ggplot(merged_data, aes(x = long, y = lat, group = group, fill = avg_salary)) +
 
 ```{r}
 library(dplyr)
+## merged_data <- left_join(data, city_loc, by = "city")
 
 offers_by_city <- data %>%
   group_by(City) %>%
