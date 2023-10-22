@@ -32,18 +32,8 @@ library(magrittr)
 data <- read.csv('FSB_Survey1.csv')
 
 grouped_data <- data %>%
-  group_by(survey_state)
-  
-average_salary_by_state <- grouped_data %>%
+  group_by(survey_state) %>% 
   summarize(AvgSalary = mean(survey_salary))
-
-state_salaries <- data.frame(
-  state = unique(data$survey_state), 
-  avg_salary = average_salary_by_state$AvgSalary  
-)
-
-library(dplyr)
-dplyr:::left_join.data.frame(grouped_data, state_salaries, by = "state")
 ```
 
 ## Column {data-width="400"}
