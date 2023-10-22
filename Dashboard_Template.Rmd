@@ -38,12 +38,12 @@ average_salary_by_state <- grouped_data %>%
   summarize(AvgSalary = mean(survey_salary))
 
 state_salaries <- data.frame(
-  state = grouped_data,
-  avg_salary = average_salary_by_state
+  state = unique(data$survey_state), 
+  avg_salary = average_salary_by_state$AvgSalary  
 )
 
 library(dplyr)
-merged_data <- left_join(states_data, state_salaries, by = "state")
+dplyr:::left_join.data.frame(grouped_data, state_salaries, by = "state")
 ```
 
 ## Column {data-width="400"}
