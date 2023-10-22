@@ -73,19 +73,15 @@ m <- leaflet(data = top_10_states_coords) %>%
     lng = ~lng,
     popup = ~paste("State:", survey_state, "<br>Avg Salary:", round(AvgSalary, 2))
  )
-
-print(m)
+m
 ```
 
 
 # City Rank by Job Opportunities {data-orientation="columns"}
 
 ```{r}
-library(dplyr)
-## merged_data <- left_join(data, city_loc, by = "city")
-
 offers_by_city <- data %>%
-  group_by(City) %>%
+  group_by(city) %>%  # Change "cities" to "city"
   summarize(Offer_Count = n())
 
 ranked_offers <- offers_by_city %>%
@@ -100,9 +96,13 @@ ranked_offers <- offers_by_city %>%
 ```{r,echo=FALSE}
 library(ggplot2)
 
-ggplot(ranked_offers, aes(x = reorder(City, -Rank), y = Offer_Count)) +
-  geom_bar(stat = "identity", fill = "blue") +
-  labs(title = "Ranked Job Offers by City", x = "City", y = "Offer Count") +
+top_10_cities <- head(ranked_offers, 10)
+
+# Create a bar chart for the top 10 cities
+ggplot(top_10_cities, aes(x = reorder(city, -Offer_Count), y = Offer_Count)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(x = "City", y = "Job Opportunities") +
+  theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
