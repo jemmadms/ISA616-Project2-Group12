@@ -56,6 +56,26 @@ ggplot(top_10_states, aes(x = reorder(survey_state, -AvgSalary), y = AvgSalary))
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+```{r}
+library(leaflet)
+
+top_10_states_coords <- merge(top_10_states, city_loc, by.x = "survey_state", by.y = "state_id")
+
+# Create a leaflet map for the top 10 states
+m <- leaflet(data = top_10_states_coords) %>%
+  addTiles() %>%
+  setView(lng = -98, lat = 39, zoom = 4) %>%
+  addCircleMarkers(
+    radius = 8,
+    color = "blue",
+    label = ~survey_state,
+    lat = ~lat,
+    lng = ~lng,
+    popup = ~paste("State:", survey_state, "<br>Avg Salary:", round(AvgSalary, 2))
+ )
+
+print(m)
+```
 
 
 # City Rank by Job Opportunities {data-orientation="columns"}
