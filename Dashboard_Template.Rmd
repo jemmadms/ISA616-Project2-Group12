@@ -11,7 +11,7 @@ output:
 
 ### Question 1: Students' average salary by region/state
 
-We will calculate the average salary for students by state or region, depending on the differences we find after analysis.
+We will calculate the average salary for students by state or region, depending on the differences we find after analysis. The graph will only show the 10 states have the highest average salaries since there are too many states.
 
 ### Question 2: City rank by job opportunities
 
