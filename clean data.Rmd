@@ -107,6 +107,167 @@ df$survey_salary[is.na(df$survey_salary)] <- mean(df$survey_salary, na.rm = TRUE
 str(df)
 ```
 
+##### 'survey_state' is converted to uppercase and spaces are removed {-}
+```{r}
+df$survey_state <- toupper(df$survey_state)
+df$survey_state <- trimws(df$survey_state)
+```
+
+# state names are standardized to abbreviations and countries and cities outside the US are removed
+```{r}
+df$survey_state <- recode(df$survey_state,
+  'ALABAMA' = 'AL',
+  'ALASKA' = 'AK',
+  'ARIZONA' = 'AZ',
+  'ARKANSAS' = 'AR',
+  'CALIFORNIA' = 'CA',
+  'COLORADO' = 'CO',
+  'CONNECTICUT' = 'CT',
+  'DELAWARE' = 'DE',
+  'FLORIDA' = 'FL',
+  'GEORGIA' = 'GA',
+  'IDAHO' = 'ID',
+  'ILLINOIS' = 'IL',
+  'INDIANA' = 'IN',
+  'IOWA' = 'IA',
+  'KANSAS' = 'KS',
+  'KENTUCKY' = 'KY',
+  'LOUISIANA' = 'LA',
+  'MAINE' = 'ME',
+  'MARYLAND' = 'MD',
+  'MASSACHUSETTS' = 'MA',
+  'MICHIGAN' = 'MI',
+  'MINNESOTA' = 'MN',
+  'MISSISSIPPI' = 'MS',
+  'MISSOURI' = 'MO',
+  'MONTANA' = 'MT',
+  'NEBRASKA' = 'NE',
+  'NEVADA' = 'NV',
+  'NEW HAMPSHIRE' = 'NH',
+  'NEW JERSEY' = 'NJ',
+  'NEW MEXICO' = 'NM',
+  'NEW YORK' = 'NY',
+  'NORTH CAROLINA' = 'NC',
+  'NORTH DAKOTA' = 'ND',
+  'OH' = 'OH',
+  'OKLAHOMA' = 'OK',
+  'OREGON' = 'OR',
+  'PENNSYLVANIA' = 'PA',
+  'RHODE ISLAND' = 'RI',
+  'SOUTH CAROLINA' = 'SC',
+  'SOUTH DAKOTA' = 'SD',
+  'TENNESSEE' = 'TN',
+  'TEXAS' = 'TX',
+  'UTAH' = 'UT',
+  'VERMONT' = 'VT',
+  'VIRGINIA' = 'VA',
+  'WASHINGTON' = 'WA',
+  'WEST VIRGINIA' = 'WV',
+  'WISCONSIN' = 'WI',
+  'WYOMING' = 'WY',
+  'OH, USA' = 'OH',
+  'OHIO/ UNITED STATES' = 'OH',
+  'OH/US' = 'OH',
+  'OHIO / THE UNITED STATES' = 'OH',
+  'OHIO/UNITED STATES' = 'OH',
+  'OH, USA' = 'OH',
+  'OHIO / USA ' = 'OH',
+  'OH/USA' = 'OH',
+  'OHIO/UNITED STATES' = 'OH',
+  'OHIO / UNITED STATES' = 'OH',
+  'OHIO/USA' = 'OH',
+  'OH, USA' = 'OH',
+  'OHIO / USA' = 'OH',
+  'IL/ USA' = 'IL',
+  'ILLINOIS / USA' = 'IL',
+  'ILLINOIS, USA' = 'IL',
+  'ILLINOIS/USA' = 'IL',
+  'ILLINOIS/ US' = 'IL',
+  'IL, UNITED STATES' = 'IL',
+  'IL, US' = 'IL',
+  'IL, USA' = 'IL',
+  'IL/USA' = 'IL',
+  'BELIZE' = 'DELETE',
+  'CANADA' = 'DELETE',
+  'CHINA' = 'DELETE',
+  'FUJIAN PROVINCE' = 'DELETE',
+  'INDIA' = 'DELETE',
+  'IRELAND' = 'DELETE',
+  'MONTENEGRO' = 'DELETE',
+  'TBA / USA' = 'DELETE',
+  'TURKEY' = 'DELETE',
+  'UNITED KINGDOM' = 'DELETE',
+  'ZHEJIANG PROVINCE' = 'DELETE',
+  'COLORADO/ UNITED STATES' = 'CO',
+  'D.C.' = 'DC',
+  'DISTRICT OF COLUMBIA' = 'DC',
+  'WASHINGTON D.C/UNITED STATES' = 'DC',
+  'GEORGIA, USA' = 'GA',
+  'IN / USA' = 'IN',
+  'MA / USA' = 'MA',
+  'MASSACHUSETTS, USA' = 'MA',
+  'MI / U.S.' = 'MI',
+  'NEW YORK, USA' = 'NY',
+  'TEXAS/ USA' = 'TX',
+  'TX/USA' = 'TX',
+  'UNITED STATES' = 'USA',
+  'US' = 'USA',
+  'VIRGINIA (VA)' = 'VA',
+  'VIRGINIA/ USA' = 'VA',
+  'WISCONSIN / USA' = 'WI',
+  'MICHIGAN, DETROIT' = 'MI'
+)
+```
+
+##### Rows with state values marked for deletion are removed {-}
+```{r}
+df <- df %>% filter(survey_state != "DELETE")
+```
+
+##### 'survey_state' values are further standardized
+```{r}
+df$survey_state <- recode(df$survey_state,
+  'COLORADO/ UNITED STATES' = 'CO',
+  'D.C.' = 'DC',
+  'DISTRICT OF COLUMBIA' = 'DC',
+  'WASHINGTON D.C/UNITED STATES' = 'DC',
+  'GEORGIA, USA' = 'GA',
+  'IN / USA' = 'IN',
+  'MA / USA' = 'MA',
+  'MASSACHUSETTS, USA' = 'MA',
+  'MI / U.S.' = 'MI',
+  'NEW YORK, USA' = 'NY',
+  'TEXAS/ USA' = 'TX',
+  'TX/USA' = 'TX',
+  'UNITED STATES' = 'USA',
+  'US' = 'USA',
+  'VIRGINIA (VA)' = 'VA',
+  'VIRGINIA/ USA' = 'VA',
+  'WISCONSIN / USA' = 'WI',
+  'MICHIGAN, DETROIT' = 'MI'
+)
+```
+
+##### 'survey_city' errors are amended {-}
+```{r}
+df$survey_city <- recode(df$survey_city,
+  'New York' = 'New York City',
+  'NYC' = 'New York City',
+  'Cincinatti' = 'Cincinnati',
+  'cleveland' = 'Cleveland',
+  'chicago' = 'Chicago')
+```
+
+##### Rows with missing values in 'survey_city' are removed {-}
+```{r}
+df <- df %>% filter(!is.na(survey_city))
+```
+
+##### Only rows where "accepted fulltime job" is the value in "survey_plans" are kept
+```{r}
+df <- df %>% filter(survey_plans == "accepted fulltime job")
+```
+
 ##### The modified data is saved to a new CSV file {.unnumbered}
 
 ```{r}
