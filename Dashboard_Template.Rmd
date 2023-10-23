@@ -58,9 +58,10 @@ ggplot(top_10_states, aes(x = reorder(survey_state, -AvgSalary), y = AvgSalary))
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+
+## Column {data-width="400"}
 ```{r}
 library(leaflet)
-
 top_10_states_coords <- merge(top_10_states, city_loc, by.x = "survey_state", by.y = "state_id")
 
 # Create a leaflet map for the top 10 states
