@@ -31,7 +31,9 @@ city_loc <- cities[, c("city", "state_id", "lat", "lng")]
 
 grouped_data <- data %>%
   group_by(survey_state) %>% 
-  summarize(AvgSalary = mean(survey_salary))
+  summarize(AvgSalary = mean(survey_salary),
+            OfferCount = n()) %>%  
+  filter(OfferCount >= 10) 
 ```
 
 
@@ -81,7 +83,7 @@ m
 
 ```{r}
 offers_by_city <- data %>%
-  group_by(city) %>%  # Change "cities" to "city"
+  group_by(city) %>%  
   summarize(Offer_Count = n())
 
 ranked_offers <- offers_by_city %>%
