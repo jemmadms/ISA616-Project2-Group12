@@ -123,5 +123,3 @@ m
 ```{r}
 sessionInfo()
 ```
-
-
