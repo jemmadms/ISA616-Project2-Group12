@@ -281,7 +281,7 @@ We started by getting an overview the data structure and missing values for each
 # Computing Environment
 
 ```{r}
-R.Version()
+sessionInfo()
 ```
 
-We ran the code R.Version（）to determine the version of r studio used to ensure our code can be reproduced. We have also saved our original file "FSB_BI_Survey_2019_2021.rds". Thus, we can rerun the code in the future to ensure reproducibility.
+We ran the code sessionInfo（）to determine the version of r studio used to ensure our code can be reproduced. We have also saved our original file "FSB_BI_Survey_2019_2021.rds". Thus, we can rerun the code in the future to ensure reproducibility.

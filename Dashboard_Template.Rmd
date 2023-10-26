@@ -120,5 +120,8 @@ m <- leaflet(data = df_final) %>%
  )
 m
 ```
+```{r}
+sessionInfo()
+```
 
 
