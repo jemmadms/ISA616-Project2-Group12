@@ -45,7 +45,9 @@ The meaning of the columns in the datafile are as follows:
 
 \* Combined Cacc and Masters: binary, OBIEE, combined degree student
 
-\* Dean's List: binary, OBIEE, achieve dean's list status at least once \* First Generation College Stdnt: binary, OBIEE, first generation student status
+\* Dean's List: binary, OBIEE, achieve dean's list status at least once
+
+\* First Generation College Stdnt: binary, OBIEE, first generation student status
 
 \* FSB Scholars: binary, OBIEE, FSB scholars program
 
@@ -53,7 +55,7 @@ The meaning of the columns in the datafile are as follows:
 
 \* President's list: binary, OBIEE, achieved president's list at least once
 
-\* Study Abroud Courtesy Account: binary, OBIEE, do not know meaning
+\* Study Abroad Courtesy Account: binary, OBIEE, do not know meaning
 
 \* Transfer Work: binary, OBIEE, do not know exact meaning
 
@@ -115,7 +117,9 @@ The meaning of the columns in the datafile are as follows:
 
 \* survey_state: text, survey, student reported state in which job is located
 
-Our group will be using the FSB data on the employment status of graduates in order to find information about geographic trends. The data file includes limited survey data on where students are located for their employment, what students' salaries are, and the job opportunities for Miami sutdents that existed in different regions between 2019 to 2021.
+The file we begin with has 3235 rows and 17 columns. The data that comes from the student survey has varying percentages of null variables. The variables that are most relevant to our research question are survey_city, survey_state, and survey_salary. Survey_city is missing 41% of values, survey_state is missing 40% of values, and survey_salary is missing 46% of values.
+
+Our group will be using the FSB data on the employment location and salary of graduates in order to find information about geographic trends. The data file includes limited survey data on where students are located for their employment, what students' salaries are, and the job opportunities for Miami sutdents that existed in different regions between 2019 to 2021.
 
 # Documented Code to Clean Data
 
