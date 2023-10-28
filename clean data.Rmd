@@ -169,10 +169,16 @@ dim(df)
 df <- df[!is.na(df$survey_state), , drop = FALSE]
 ```
 
+##### Only rows where "accepted fulltime job" is the value in "survey_plans" are kept
+
+```{r}
+df <- df %>% filter(survey_plans == "accepted fulltime job")
+```
+
 ##### The data is checked for remaining null values {.unnumbered}
 
 ```{r}
-str(df)
+colSums(is.na(df))
 ```
 
 ##### Null values are imputed {.unnumbered}
@@ -194,7 +200,7 @@ df$survey_salary[is.na(df$survey_salary)] <- mean(df$survey_salary, na.rm = TRUE
 ##### The data is checked for remaining null values {.unnumbered}
 
 ```{r}
-str(df)
+colSums(is.na(df))
 ```
 
 ##### 'survey_state' is converted to uppercase and spaces are removed {.unnumbered}
@@ -204,7 +210,7 @@ df$survey_state <- toupper(df$survey_state)
 df$survey_state <- trimws(df$survey_state)
 ```
 
-# state names are standardized to abbreviations and countries and cities outside the US are removed
+##### state names are standardized to abbreviations and countries and cities outside the US are removed {-}
 
 ```{r}
 df$survey_state <- recode(df$survey_state,
@@ -241,7 +247,7 @@ df$survey_state <- recode(df$survey_state,
   'NEW YORK' = 'NY',
   'NORTH CAROLINA' = 'NC',
   'NORTH DAKOTA' = 'ND',
-  'OH' = 'OH',
+  'OHIO' = 'OH',
   'OKLAHOMA' = 'OK',
   'OREGON' = 'OR',
   'PENNSYLVANIA' = 'PA',
@@ -342,27 +348,33 @@ df$survey_state <- recode(df$survey_state,
 )
 ```
 
-##### 'survey_city' errors are amended {.unnumbered}
+```{r}
+df[5, "survey_state"] <- "IL"
+df_final[1107, "survey_state"] <- "IL"
+df_final[1438, "survey_state"] <- "IL"
+df_final[1480, "survey_state"] <- "MI"
+```
+##### 'survey_city' is column is standardized and errors are amended {.unnumbered}
+
+```{r}
+df$survey_city <- toupper(df$survey_city)
+df$survey_city <- trimws(df$survey_city)
+```
 
 ```{r}
 df$survey_city <- recode(df$survey_city,
-  'New York' = 'New York City',
-  'NYC' = 'New York City',
-  'Cincinatti' = 'Cincinnati',
-  'cleveland' = 'Cleveland',
-  'chicago' = 'Chicago')
+  'NEW YORK CITY' = 'NEW YORK',
+  'NYC' = 'NEW YORK',
+  'CINCINATTI' = 'CINCINNATI',
+  'WITCHITA' = 'WICHITA',
+  'MILWAUKWEE' = 'MILWAUKEE',
+  'CINCINNATI, OH' = 'CINCINNATI')
 ```
 
 ##### Rows with missing values in 'survey_city' are removed {.unnumbered}
 
 ```{r}
 df <- df %>% filter(!is.na(survey_city))
-```
-
-##### Only rows where "accepted fulltime job" is the value in "survey_plans" are kept
-
-```{r}
-df <- df %>% filter(survey_plans == "accepted fulltime job")
 ```
 
 ##### The modified data is saved to a new CSV file {.unnumbered}
