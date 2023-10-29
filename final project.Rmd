@@ -19,6 +19,7 @@ output:
 
 The purpose of our project is to help Mr. Kirk Bogard raise funds for Farmer School of Business. We will create several graphs and maps to clearly show companies in regions where it is valuable to try to build external relationships. The audience of our project are shared work producers including the team of people who do the same job as Mr. Kirk Bogard, users who need to know how it is done, and how to do it better.
 
+![](images/poster Value proposition canvas simple white.png)
 
 # Clean Data
 
@@ -107,7 +108,7 @@ df$survey_state <- toupper(df$survey_state)
 df$survey_state <- trimws(df$survey_state)
 ```
 
-##### state names are standardized to abbreviations and countries and cities outside the US are removed {-}
+##### state names are standardized to abbreviations and countries and cities outside the US are removed {.unnumbered}
 
 ```{r}
 df$survey_state <- recode(df$survey_state,
@@ -251,6 +252,7 @@ df_final[1107, "survey_state"] <- "IL"
 df_final[1438, "survey_state"] <- "IL"
 df_final[1480, "survey_state"] <- "MI"
 ```
+
 ##### 'survey_city' is column is standardized and errors are amended {.unnumbered}
 
 ```{r}
@@ -333,6 +335,7 @@ df_final <- left_join(df, cities %>% select(city_state, lat, lng), by = "city_st
 head(df_final)
 df %>% count(city_state) %>% arrange(desc(n)) %>% head(10)
 ```
+
 ```{r}
 grouped_data <- df %>%
   group_by(survey_state) %>% 
@@ -340,7 +343,6 @@ grouped_data <- df %>%
             OfferCount = n()) %>%  
   filter(OfferCount >= 10) 
 ```
-
 
 ## Column {data-width="400"}
 
@@ -379,5 +381,4 @@ ranked_offers <- offers_by_city %>%
 
 ### Add Bar Charts
 
-```{r,echo=FALSE}
-library(ggplot2)
+\`\`\`{r,echo=FALSE} library(ggplot2)
