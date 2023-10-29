@@ -1,5 +1,5 @@
 ---
-title: "Student Success - clean data"
+title: "Student Success - final project"
 author: "Jemma Marcus-Shi & Linjie Zhu"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
