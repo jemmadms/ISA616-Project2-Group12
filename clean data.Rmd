@@ -29,7 +29,97 @@ The purpose of our project is to help Mr. Kirk Bogard raise funds for Farmer Sch
 
 ## Data Description
 
-Our group will be using the FSB data on the employment status of graduates in order to find information about geographic trends. The data file includes survey data on where students are going, what students' salaries are, and job opportunities in different regions between 2019 to 2021.
+We have three years of data representing FSB graduates in 2019, 2020, and 2021. The dataset provided had 42 variables. The source is either derived by Professor Jones-Farmer during data cleaning/merging, from the Oracle Business Intelligence Enterprise Edition (OBIEE) maintained by Miami administration, or from the self reported senior survey. The files have been cleaned and merged into one file.
+
+The meaning of the columns in the datafile are as follows:
+
+\* nmajor: numeric,derived, the number of majors
+
+\* major1: text, OBIEE, first major
+
+\* major 2: text, OBIEE, second major
+
+\* BBRJ: binary, OBIEE, an attribute of a student, but we do not know what this stands for
+
+\* Business Direct Admit: binary, OBIEE, a direct admit to FSB as a first year
+
+\* Combined Cacc and Masters: binary, OBIEE, combined degree student
+
+\* Dean's List: binary, OBIEE, achieve dean's list status at least once
+
+\* First Generation College Stdnt: binary, OBIEE, first generation student status
+
+\* FSB Scholars: binary, OBIEE, FSB scholars program
+
+\* Honors Program: binary, OBIEE, member of University honors program
+
+\* President's list: binary, OBIEE, achieved president's list at least once
+
+\* Study Abroad Courtesy Account: binary, OBIEE, do not know meaning
+
+\* Transfer Work: binary, OBIEE, do not know exact meaning
+
+\* Cum Laude: binary, OBIEE, graduated Cum Laude
+
+\* Magna Cum Laude: binary, OBIEE, graduated Magna Cum Laude
+
+\* Summa Cum Laude: binary, OBIEE, graduated Summa Cum Laude
+
+\* University Honors: binary, OBIEE, graduated with University Honors
+
+\* University Honors w/Distinction: binary, OBIEE, graduated with University Honors with Distinction
+
+\* minor1: text, OBIEE, first listed minor
+
+\* minor2: text, OBIEE, second listed minor
+
+\* IPEDS.Race.Ethnicity: text, OBIEE, race/ethnicity
+
+\* Gender: text, OBIEE, sex
+
+\* GPA.Range: text, OBIEE, GPA within a .5 range
+
+\* Term.Code: numeric, OBIEE, First four digits are the graduation year (beginning in July, e.g. July 2020 is FY 2021). Last two digits is the term (10=fall, 15=winter, 20=spring, 30=summer).
+
+\* Year.x: text, derived, first four digits of Term.Code stored as a character variable
+
+\* latin_honors: text, survey, latin honors designation
+
+\* survey_city: text, survey, student reported city in which their job is located
+
+\* survey_company: text, survey, student reported company in which they accepted a job
+
+\* survey_deptfunc: text, survey, student reported job function
+
+\* survey_gradprogram: text, survey, student reported graduate program they will be attending
+
+\* survey_gradschool: text, survey, stuent reported graduate school they will be attending
+
+\* survey_internfour: text, survey, student reported fourth internship they held during college
+
+\* survey_internthree: text, survey, student reported third internship they held during college
+
+\* survey_interntwo: text, survey, student reported second internship they held during college
+
+\* survey_internone: text, survey, student reported first internship they held during college
+
+\* Survey_internships: text, survey, Student reported number of internships they held during college
+
+\* survey_offers: text, survey, student reported number of offers for full time employment received
+
+\* survey_plans: text, survey, student reported plans after graduation
+
+\* survey_pref_field: text, survey, student reported whether working in preferred field
+
+\* survey_pref_loc: text, survey, student reported whether working in preferred location
+
+\* survey_salary: numeric, survey, student reported salary
+
+\* survey_state: text, survey, student reported state in which job is located
+
+The file we begin with has 3235 rows and 17 columns. The data that comes from the student survey has varying percentages of null variables. The variables that are most relevant to our research question are survey_city, survey_state, and survey_salary. Survey_city is missing 41% of values, survey_state is missing 40% of values, and survey_salary is missing 46% of values.
+
+Our group will be using the FSB data on the employment location and salary of graduates in order to find information about geographic trends. The data file includes limited survey data on where students are located for their employment, what students' salaries are, and the job opportunities for Miami sutdents that existed in different regions between 2019 to 2021.
 
 # Documented Code to Clean Data
 
@@ -79,10 +169,16 @@ dim(df)
 df <- df[!is.na(df$survey_state), , drop = FALSE]
 ```
 
+##### Only rows where "accepted fulltime job" is the value in "survey_plans" are kept
+
+```{r}
+df <- df %>% filter(survey_plans == "accepted fulltime job")
+```
+
 ##### The data is checked for remaining null values {.unnumbered}
 
 ```{r}
-str(df)
+colSums(is.na(df))
 ```
 
 ##### Null values are imputed {.unnumbered}
@@ -104,16 +200,18 @@ df$survey_salary[is.na(df$survey_salary)] <- mean(df$survey_salary, na.rm = TRUE
 ##### The data is checked for remaining null values {.unnumbered}
 
 ```{r}
-str(df)
+colSums(is.na(df))
 ```
 
-##### 'survey_state' is converted to uppercase and spaces are removed {-}
+##### 'survey_state' is converted to uppercase and spaces are removed {.unnumbered}
+
 ```{r}
 df$survey_state <- toupper(df$survey_state)
 df$survey_state <- trimws(df$survey_state)
 ```
 
-# state names are standardized to abbreviations and countries and cities outside the US are removed
+##### state names are standardized to abbreviations and countries and cities outside the US are removed {-}
+
 ```{r}
 df$survey_state <- recode(df$survey_state,
   'ALABAMA' = 'AL',
@@ -149,7 +247,7 @@ df$survey_state <- recode(df$survey_state,
   'NEW YORK' = 'NY',
   'NORTH CAROLINA' = 'NC',
   'NORTH DAKOTA' = 'ND',
-  'OH' = 'OH',
+  'OHIO' = 'OH',
   'OKLAHOMA' = 'OK',
   'OREGON' = 'OR',
   'PENNSYLVANIA' = 'PA',
@@ -219,12 +317,14 @@ df$survey_state <- recode(df$survey_state,
 )
 ```
 
-##### Rows with state values marked for deletion are removed {-}
+##### Rows with state values marked for deletion are removed {.unnumbered}
+
 ```{r}
 df <- df %>% filter(survey_state != "DELETE")
 ```
 
 ##### 'survey_state' values are further standardized
+
 ```{r}
 df$survey_state <- recode(df$survey_state,
   'COLORADO/ UNITED STATES' = 'CO',
@@ -248,24 +348,33 @@ df$survey_state <- recode(df$survey_state,
 )
 ```
 
-##### 'survey_city' errors are amended {-}
+```{r}
+df[5, "survey_state"] <- "IL"
+df_final[1107, "survey_state"] <- "IL"
+df_final[1438, "survey_state"] <- "IL"
+df_final[1480, "survey_state"] <- "MI"
+```
+##### 'survey_city' is column is standardized and errors are amended {.unnumbered}
+
+```{r}
+df$survey_city <- toupper(df$survey_city)
+df$survey_city <- trimws(df$survey_city)
+```
+
 ```{r}
 df$survey_city <- recode(df$survey_city,
-  'New York' = 'New York City',
-  'NYC' = 'New York City',
-  'Cincinatti' = 'Cincinnati',
-  'cleveland' = 'Cleveland',
-  'chicago' = 'Chicago')
+  'NEW YORK CITY' = 'NEW YORK',
+  'NYC' = 'NEW YORK',
+  'CINCINATTI' = 'CINCINNATI',
+  'WITCHITA' = 'WICHITA',
+  'MILWAUKWEE' = 'MILWAUKEE',
+  'CINCINNATI, OH' = 'CINCINNATI')
 ```
 
-##### Rows with missing values in 'survey_city' are removed {-}
+##### Rows with missing values in 'survey_city' are removed {.unnumbered}
+
 ```{r}
 df <- df %>% filter(!is.na(survey_city))
-```
-
-##### Only rows where "accepted fulltime job" is the value in "survey_plans" are kept
-```{r}
-df <- df %>% filter(survey_plans == "accepted fulltime job")
 ```
 
 ##### The modified data is saved to a new CSV file {.unnumbered}
@@ -281,7 +390,7 @@ We started by getting an overview the data structure and missing values for each
 # Computing Environment
 
 ```{r}
-R.Version()
+sessionInfo()
 ```
 
-We ran the code R.Version（）to determine the version of r studio used to ensure our code can be reproduced. We have also saved our original file "FSB_BI_Survey_2019_2021.rds". Thus, we can rerun the code in the future to ensure reproducibility.
+We ran the code sessionInfo() function to determine the version of r studio used to ensure our code can be reproduced. We have also saved our original file "FSB_BI_Survey_2019_2021.rds". Thus, we can rerun the code in the future to ensure reproducibility.

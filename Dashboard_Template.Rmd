@@ -24,12 +24,42 @@ library(dplyr)
 library(readr)
 library(magrittr)
 
-data <- read.csv('FSB_Survey1.csv')
-colnames(data)[colnames(data) == "survey_city"] <- "city"
+df <- read.csv('FSB_Survey.csv')
 cities = read.csv('uscities.csv')
-city_loc <- cities[, c("city", "state_id", "lat", "lng")]
+```
 
-grouped_data <- data %>%
+```{r}
+df[5, "survey_state"] <- "IL"
+df[1107, "survey_state"] <- "IL"
+df[1385, "survey_state"] <- "DC"
+df[1438, "survey_state"] <- "IL"
+df[1440, "survey_state"] <- "IL"
+df[1480, "survey_state"] <- "MI"
+```
+
+```{r}
+df[51, "survey_city"] <- "INDIANAPOLIS"
+df[1385, "survey_city"] <- "WASHINGTON"
+df[1417, "survey_city"] <- "WASHINGTON"
+```
+
+
+```{r}
+df <- df %>% mutate(city_state = paste(survey_city, ", ", survey_state))
+cities <- cities %>% mutate(city_state = toupper(paste(city, ", ", state_id)))
+```
+
+```{r}
+df_final <- left_join(df, cities %>% select(city_state, lat, lng), by = "city_state")
+```
+
+```{r}
+head(df_final)
+df %>% count(city_state) %>% arrange(desc(n)) %>% head(10)
+```
+
+```{r}
+grouped_data <- df %>%
   group_by(survey_state) %>% 
   summarize(AvgSalary = mean(survey_salary),
             OfferCount = n()) %>%  
@@ -58,32 +88,12 @@ ggplot(top_10_states, aes(x = reorder(survey_state, -AvgSalary), y = AvgSalary))
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
-```{r}
-library(leaflet)
-
-top_10_states_coords <- merge(top_10_states, city_loc, by.x = "survey_state", by.y = "state_id")
-
-# Create a leaflet map for the top 10 states
-m <- leaflet(data = top_10_states_coords) %>%
-  addTiles() %>%
-  setView(lng = -98, lat = 39, zoom = 4) %>%
-  addCircleMarkers(
-    radius = 8,
-    color = "blue",
-    label = ~survey_state,
-    lat = ~lat,
-    lng = ~lng,
-    popup = ~paste("State:", survey_state, "<br>Avg Salary:", round(AvgSalary, 2))
- )
-m
-```
-
 
 # City Rank by Job Opportunities {data-orientation="columns"}
 
 ```{r}
-offers_by_city <- data %>%
-  group_by(city) %>%  
+offers_by_city <- df_final %>%
+  group_by(city_state) %>%  
   summarize(Offer_Count = n())
 
 ranked_offers <- offers_by_city %>%
@@ -101,12 +111,48 @@ library(ggplot2)
 top_10_cities <- head(ranked_offers, 10)
 
 # Create a bar chart for the top 10 cities
-ggplot(top_10_cities, aes(x = reorder(city, -Offer_Count), y = Offer_Count)) +
+ggplot(top_10_cities, aes(x = reorder(city_state, -Offer_Count), y = Offer_Count)) +
   geom_bar(stat = "identity", fill = "skyblue") +
   labs(x = "City", y = "Job Opportunities") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
+```{r}
+missing_values <- df_final[is.na(df_final$lat), ]
+```
 
 
+## Column {data-width="400"}
+```{r}
+install.packages("mapview")
+library(sf)
+city_map_df = data.frame(df_final$lng, df_final$lat, df_final$city_state)
+city_map_sdf = st_as_sf(city_map_df,
+                        coords=c("df_final.lng", "df_final.lat"), crs=4326)
+mapview(city_map_sdf, label=city_map_sdf$city_state)
+missing = df_final[is.na(df_final$lat),]
+## This doesn't work because there are missing coordinates in city_map_df - but idk why
+```
+
+```{r}
+### this doesn't work
+library(leaflet)
+
+# Create a leaflet map for the top 10 cities
+m <- leaflet(data = df_final) %>%
+  addTiles() %>%
+  setView(lng = -98, lat = 39, zoom = 4) %>%
+  addCircleMarkers(
+    radius = 8,
+    color = "blue",
+    label = ~city_state,
+    lat = ~lat,
+    lng = ~lng,
+    popup = ~paste("City:", city_state, "<br>Avg Salary:", round(AvgSalary, 2))
+ )
+m
+```
+```{r}
+sessionInfo()
+```
