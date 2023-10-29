@@ -292,4 +292,91 @@ We ran the code sessionInfo() function to determine the version of r studio used
 
 # Deliverables
 
+# Region/State by Average Salaries {data-orientation="columns"}
 
+```{r,echo=FALSE}
+library(dplyr)
+library(readr)
+library(magrittr)
+
+df <- read.csv('FSB_Survey.csv')
+cities = read.csv('uscities.csv')
+```
+
+```{r}
+df[5, "survey_state"] <- "IL"
+df[1107, "survey_state"] <- "IL"
+df[1385, "survey_state"] <- "DC"
+df[1438, "survey_state"] <- "IL"
+df[1440, "survey_state"] <- "IL"
+df[1480, "survey_state"] <- "MI"
+```
+
+```{r}
+df[51, "survey_city"] <- "INDIANAPOLIS"
+df[1385, "survey_city"] <- "WASHINGTON"
+df[1417, "survey_city"] <- "WASHINGTON"
+```
+
+
+```{r}
+df <- df %>% mutate(city_state = paste(survey_city, ", ", survey_state))
+cities <- cities %>% mutate(city_state = toupper(paste(city, ", ", state_id)))
+```
+
+```{r}
+df_final <- left_join(df, cities %>% select(city_state, lat, lng), by = "city_state")
+```
+
+```{r}
+head(df_final)
+df %>% count(city_state) %>% arrange(desc(n)) %>% head(10)
+```
+```{r}
+grouped_data <- df %>%
+  group_by(survey_state) %>% 
+  summarize(AvgSalary = mean(survey_salary),
+            OfferCount = n()) %>%  
+  filter(OfferCount >= 10) 
+```
+
+
+## Column {data-width="400"}
+
+### Add Bar Charts and/or Scatterplot Map to show Highest Region/State
+
+```{r,echo=FALSE}
+library(ggplot2)
+
+# Sort the grouped data by AvgSalary in descending order
+grouped_data <- grouped_data %>%
+  arrange(desc(AvgSalary))
+# Take the top 10 states
+top_10_states <- head(grouped_data, 10)
+
+# Create a bar chart for the top 10 states
+ggplot(top_10_states, aes(x = reorder(survey_state, -AvgSalary), y = AvgSalary)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(x = "State", y = "Average Salary") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+# City Rank by Job Opportunities {data-orientation="columns"}
+
+```{r}
+offers_by_city <- df_final %>%
+  group_by(city_state) %>%  
+  summarize(Offer_Count = n())
+
+ranked_offers <- offers_by_city %>%
+  arrange(desc(Offer_Count)) %>%
+  mutate(Rank = row_number())
+```
+
+## Column {data-width="400"}
+
+### Add Bar Charts
+
+```{r,echo=FALSE}
+library(ggplot2)
