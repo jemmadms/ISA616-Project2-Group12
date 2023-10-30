@@ -66,6 +66,7 @@ ggplot(top_10_states, aes(x = reorder(survey_state, -AvgSalary), y = AvgSalary))
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+This graph above shows the three states VA, CA< and NY have the highest average salaries for Miami's graduation students, which is more attractive for students. Thus, try to build external relationships with the companies in these states may be more valuable and can raise more fund for the Farmer School of Business.
 
 # City Rank by Number of Job Placements {data-orientation="columns"}
 
