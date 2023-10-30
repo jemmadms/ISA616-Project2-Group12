@@ -23,7 +23,7 @@ The file we begin with has 3235 rows and 17 columns. The data that comes from th
 
 Our group will be using the FSB data on the employment location and salary of graduates in order to find information about geographic trends. The data file includes limited survey data on where students are located for their employment, what students' salaries are, and the job opportunities for Miami students that existed in different regions between 2019 to 2021.
 
-The meaning of the columns in the datafile are as follows:
+The meaning of the columns in the original datafile are as follows:
 
 1.  nmajor: numeric,derived, the number of majors 
 2.  major1: text, OBIEE, first major
