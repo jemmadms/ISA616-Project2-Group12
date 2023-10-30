@@ -17,7 +17,11 @@ The tab for *State by Average Salaries* shows the three states with the higest a
 
 ### Question 2: City rank by number of job placements
 
-We will summarize the number of students employed by city and rank those cities by frequency. Thus, we can find which cities give our students the most job opportunities. It will also allow our client to be aware of which cities should be the focus of fundraising efforts. 
+We will summarize the number of students employed by city and rank those cities by frequency. Thus, we can find which cities are likely to provide our students with the most job opportunities. It will also allow our client to be aware of which cities should be the focus of fundraising efforts. 
+
+The tab for *Top Ten Highest Average Salaries by State* displays a bar graph that shows which city offers the most job placements for Miami's recent alumni. As we can see, Chicago and Cincinnati have the highest number of job placements. Consequently, it's more valuable for Mr. Kirk to make more effort building external relationships with companies in these two cities.
+
+The tab for *Top Ten Highest Average Salaries by State* also displays a map to show the distribution of cities with more job placements The blue spots that are more opaque show the cities with more job placements for Miami FSB alumni. This display of clusters allows Mr. Kirk Bogard to focus not only on cities alone, but also areas within states.
 
 # State by Average Salaries {data-orientation="columns"}
 
@@ -97,7 +101,6 @@ ggplot(top_10_cities, aes(x = reorder(city_state, -Offer_Count), y = Offer_Count
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
-The bar graph shows which city offers the most job opportunities for Miami's graduation students. As we can see, Chicago and Cincinnati has the highest number of job opportunities. Consequently, it's more valuable for Mr. Kirk to make more effort on building external relationships with companies in these two cities to raise fund.
 
 ```{r}
 missing_values <- df_final[is.na(df_final$lat), ]
