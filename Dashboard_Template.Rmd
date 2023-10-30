@@ -11,11 +11,11 @@ output:
 
 ### Question 1: Students' average salary by region/state
 
-+We will calculate the average salary for students by state or region, depending on the differences we find after analysis. The graph will show the Top 10 states with the highest average salaries.
+We want to calculate the average salary for students by state or region, depending on the differences we find after analysis. The graph will show the Top 10 states with the highest average salaries.
 
 The tab for *State by Average Salaries* shows the three states with the higest average salaries for FSB students are VA, CA, and NY, which may be more attractive for students. Thus, trying to build external relationships with the companies in these states may be more valuable and can raise more funds for the Farmer School of Business.
 
-### Question 2: City rank by job opportunities
+### Question 2: City rank by number of job placements
 
 We will summarize the number of students employed by city and rank those cities by frequency. Thus, we can find which cities give our students the most job opportunities. It will also allow our client to be aware of which cities should be the focus of fundraising efforts. 
 
@@ -68,7 +68,6 @@ ggplot(top_10_states, aes(x = reorder(survey_state, -AvgSalary), y = AvgSalary))
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
-This graph above shows the three states VA, CA< and NY have the highest average salaries for Miami's graduation students, which is more attractive for students. Thus, try to build external relationships with the companies in these states may be more valuable and can raise more fund for the Farmer School of Business.
 
 # City Rank by Number of Job Placements {data-orientation="columns"}
 
