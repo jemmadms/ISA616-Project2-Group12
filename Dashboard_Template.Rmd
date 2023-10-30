@@ -27,23 +27,6 @@ library(magrittr)
 df <- read.csv('FSB_Survey.csv')
 cities = read.csv('uscities.csv')
 ```
-
-```{r}
-df[5, "survey_state"] <- "IL"
-df[1107, "survey_state"] <- "IL"
-df[1385, "survey_state"] <- "DC"
-df[1438, "survey_state"] <- "IL"
-df[1440, "survey_state"] <- "IL"
-df[1480, "survey_state"] <- "MI"
-```
-
-```{r}
-df[51, "survey_city"] <- "INDIANAPOLIS"
-df[1385, "survey_city"] <- "WASHINGTON"
-df[1417, "survey_city"] <- "WASHINGTON"
-```
-
-
 ```{r}
 df <- df %>% mutate(city_state = paste(survey_city, ", ", survey_state))
 cities <- cities %>% mutate(city_state = toupper(paste(city, ", ", state_id)))
@@ -153,7 +136,7 @@ mapview(city_map_sdf, label=city_map_sdf$city_state)
 # m
 ```
 
-### sessionInfo {data-orientation="columns"}
+# sessionInfo {data-orientation="columns"}
 
 ```{r}
 sessionInfo()

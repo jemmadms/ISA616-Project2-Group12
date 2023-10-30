@@ -23,6 +23,99 @@ The purpose of our project is to help Mr. Kirk Bogard raise funds for Farmer Sch
 
 # Clean Data
 
+## Data Description
+We have three years of data representing FSB graduates in 2019, 2020, and 2021. The dataset provided had 42 variables. The source is either derived by Professor Jones-Farmer during data cleaning/merging, from the Oracle Business Intelligence Enterprise Edition (OBIEE) maintained by Miami administration, or from the self reported senior survey. The files have been cleaned and merged into one file.
+
+The meaning of the columns in the datafile are as follows:
+
+\* nmajor: numeric,derived, the number of majors
+
+\* major1: text, OBIEE, first major
+
+\* major 2: text, OBIEE, second major
+
+\* BBRJ: binary, OBIEE, an attribute of a student, but we do not know what this stands for
+
+\* Business Direct Admit: binary, OBIEE, a direct admit to FSB as a first year
+
+\* Combined Cacc and Masters: binary, OBIEE, combined degree student
+
+\* Dean's List: binary, OBIEE, achieve dean's list status at least once
+
+\* First Generation College Stdnt: binary, OBIEE, first generation student status
+
+\* FSB Scholars: binary, OBIEE, FSB scholars program
+
+\* Honors Program: binary, OBIEE, member of University honors program
+
+\* President's list: binary, OBIEE, achieved president's list at least once
+
+\* Study Abroad Courtesy Account: binary, OBIEE, do not know meaning
+
+\* Transfer Work: binary, OBIEE, do not know exact meaning
+
+\* Cum Laude: binary, OBIEE, graduated Cum Laude
+
+\* Magna Cum Laude: binary, OBIEE, graduated Magna Cum Laude
+
+\* Summa Cum Laude: binary, OBIEE, graduated Summa Cum Laude
+
+\* University Honors: binary, OBIEE, graduated with University Honors
+
+\* University Honors w/Distinction: binary, OBIEE, graduated with University Honors with Distinction
+
+\* minor1: text, OBIEE, first listed minor
+
+\* minor2: text, OBIEE, second listed minor
+
+\* IPEDS.Race.Ethnicity: text, OBIEE, race/ethnicity
+
+\* Gender: text, OBIEE, sex
+
+\* GPA.Range: text, OBIEE, GPA within a .5 range
+
+\* Term.Code: numeric, OBIEE, First four digits are the graduation year (beginning in July, e.g. July 2020 is FY 2021). Last two digits is the term (10=fall, 15=winter, 20=spring, 30=summer).
+
+\* Year.x: text, derived, first four digits of Term.Code stored as a character variable
+
+\* latin_honors: text, survey, latin honors designation
+
+\* survey_city: text, survey, student reported city in which their job is located
+
+\* survey_company: text, survey, student reported company in which they accepted a job
+
+\* survey_deptfunc: text, survey, student reported job function
+
+\* survey_gradprogram: text, survey, student reported graduate program they will be attending
+
+\* survey_gradschool: text, survey, stuent reported graduate school they will be attending
+
+\* survey_internfour: text, survey, student reported fourth internship they held during college
+
+\* survey_internthree: text, survey, student reported third internship they held during college
+
+\* survey_interntwo: text, survey, student reported second internship they held during college
+
+\* survey_internone: text, survey, student reported first internship they held during college
+
+\* Survey_internships: text, survey, Student reported number of internships they held during college
+
+\* survey_offers: text, survey, student reported number of offers for full time employment received
+
+\* survey_plans: text, survey, student reported plans after graduation
+
+\* survey_pref_field: text, survey, student reported whether working in preferred field
+
+\* survey_pref_loc: text, survey, student reported whether working in preferred location
+
+\* survey_salary: numeric, survey, student reported salary
+
+\* survey_state: text, survey, student reported state in which job is located
+
+The file we begin with has 3235 rows and 17 columns. The data that comes from the student survey has varying percentages of null variables. The variables that are most relevant to our research question are survey_city, survey_state, and survey_salary. Survey_city is missing 41% of values, survey_state is missing 40% of values, and survey_salary is missing 46% of values.
+
+Our group will be using the FSB data on the employment location and salary of graduates in order to find information about geographic trends. The data file includes limited survey data on where students are located for their employment, what students' salaries are, and the job opportunities for Miami sutdents that existed in different regions between 2019 to 2021.
+
 ##### The necessary libraries are loaded into R {.unnumbered}
 
 ```{r}
@@ -67,7 +160,7 @@ dim(df)
 df <- df[!is.na(df$survey_state), , drop = FALSE]
 ```
 
-##### Only rows where "accepted fulltime job" is the value in "survey_plans" are kept
+##### Only rows where "accepted fulltime job" is the value in "survey_plans" are kept {-}
 
 ```{r}
 df <- df %>% filter(survey_plans == "accepted fulltime job")
@@ -246,14 +339,7 @@ df$survey_state <- recode(df$survey_state,
 )
 ```
 
-```{r}
-df[5, "survey_state"] <- "IL"
-df_final[1107, "survey_state"] <- "IL"
-df_final[1438, "survey_state"] <- "IL"
-df_final[1480, "survey_state"] <- "MI"
-```
-
-##### 'survey_city' is column is standardized and errors are amended {.unnumbered}
+##### 'survey_city' column is standardized and errors are amended {.unnumbered}
 
 ```{r}
 df$survey_city <- toupper(df$survey_city)
@@ -302,7 +388,7 @@ We will calculate the average salary for students by state or region, depending 
 
 ### Question 2: City rank by job opportunities
 
-We will summarize the number of students employed by city and rank those cities by frequency. Thus, we can find which cities give our students the most job opportunities. It will also allow our client to be aware of which cities should be the focus of fundraising efforts.
+We will summarize the number of students employed by city and rank those cities by frequency. Thus, we can find which cities give our students the most job opportunities. It will also allow our client to be aware of which cities should be the focus of fundraising efforts. 
 
 # Region/State by Average Salaries {data-orientation="columns"}
 
@@ -314,22 +400,6 @@ library(magrittr)
 df <- read.csv('FSB_Survey.csv')
 cities = read.csv('uscities.csv')
 ```
-
-```{r}
-df[5, "survey_state"] <- "IL"
-df[1107, "survey_state"] <- "IL"
-df[1385, "survey_state"] <- "DC"
-df[1438, "survey_state"] <- "IL"
-df[1440, "survey_state"] <- "IL"
-df[1480, "survey_state"] <- "MI"
-```
-
-```{r}
-df[51, "survey_city"] <- "INDIANAPOLIS"
-df[1385, "survey_city"] <- "WASHINGTON"
-df[1417, "survey_city"] <- "WASHINGTON"
-```
-
 ```{r}
 df <- df %>% mutate(city_state = paste(survey_city, ", ", survey_state))
 cities <- cities %>% mutate(city_state = toupper(paste(city, ", ", state_id)))
@@ -352,6 +422,7 @@ grouped_data <- df %>%
   filter(OfferCount >= 10) 
 ```
 
+
 ## Column {data-width="400"}
 
 ### Add Bar Charts and/or Scatterplot Map to show Highest Region/State
@@ -362,6 +433,7 @@ library(ggplot2)
 # Sort the grouped data by AvgSalary in descending order
 grouped_data <- grouped_data %>%
   arrange(desc(AvgSalary))
+
 # Take the top 10 states
 top_10_states <- head(grouped_data, 10)
 
@@ -392,6 +464,8 @@ ranked_offers <- offers_by_city %>%
 ```{r,echo=FALSE}
 library(ggplot2)
 
+top_10_cities <- head(ranked_offers, 10)
+
 # Create a bar chart for the top 10 cities
 ggplot(top_10_cities, aes(x = reorder(city_state, -Offer_Count), y = Offer_Count)) +
   geom_bar(stat = "identity", fill = "skyblue") +
@@ -404,37 +478,38 @@ ggplot(top_10_cities, aes(x = reorder(city_state, -Offer_Count), y = Offer_Count
 missing_values <- df_final[is.na(df_final$lat), ]
 ```
 
-## Column {data-width="400"}
 
+## Column {data-width="400"}
 ```{r}
-install.packages("mapview")
+library(mapview)
 library(sf)
 city_map_df = data.frame(df_final$lng, df_final$lat, df_final$city_state)
+city_map_df = na.omit(city_map_df)
 city_map_sdf = st_as_sf(city_map_df,
                         coords=c("df_final.lng", "df_final.lat"), crs=4326)
 mapview(city_map_sdf, label=city_map_sdf$city_state)
-missing = df_final[is.na(df_final$lat),]
-## This doesn't work because there are missing coordinates in city_map_df - but idk why
 ```
 
 ```{r}
-### this doesn't work
-library(leaflet)
-
-# Create a leaflet map for the top 10 cities
-m <- leaflet(data = df_final) %>%
-  addTiles() %>%
-  setView(lng = -98, lat = 39, zoom = 4) %>%
-  addCircleMarkers(
-    radius = 8,
-    color = "blue",
-    label = ~city_state,
-    lat = ~lat,
-    lng = ~lng,
-    popup = ~paste("City:", city_state, "<br>Avg Salary:", round(AvgSalary, 2))
- )
-m
+# ### this doesn't work
+# library(leaflet)
+# 
+# # Create a leaflet map for the top 10 cities
+# m <- leaflet(data = df_final) %>%
+#   addTiles() %>%
+#   setView(lng = -98, lat = 39, zoom = 4) %>%
+#   addCircleMarkers(
+#     radius = 8,
+#     color = "blue",
+#     label = ~city_state,
+#     lat = ~lat,
+#     lng = ~lng,
+#     popup = ~paste("City:", city_state, "<br>Avg Salary:", round(AvgSalary, 2))
+#  )
+# m
 ```
+
+# sessionInfo {data-orientation="columns"}
 
 ```{r}
 sessionInfo()
