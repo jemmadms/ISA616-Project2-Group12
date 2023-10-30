@@ -12,7 +12,9 @@ By understanding the data, the client can understand how each state affects stud
 ## Data Sources
 
 We have three years of data representing FSB graduates in 2019, 2020, and 2021. The dataset provided had 42 variables. The source is either derived by Professor Jones-Farmer during data cleaning/merging, from the Oracle Business Intelligence Enterprise Edition (OBIEE) maintained by Miami administration, or from the self reported senior survey. The files have been cleaned and merged into one file.
+
 The file name in the R project is FSB_BI_Survey_2019_2021.rds
+
 The file name after the data cleaning is FSB_Survey.csv
 
 ## Data Description
