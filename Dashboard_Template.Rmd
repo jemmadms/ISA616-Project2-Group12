@@ -47,7 +47,7 @@ grouped_data <- df %>%
 
 ## Column {data-width="400"}
 
-### Top Ten Highest Average Salary by State
+### Top Ten Highest Average Salaries by State
 
 ```{r,echo=FALSE}
 library(ggplot2)
@@ -81,7 +81,7 @@ ranked_offers <- offers_by_city %>%
 
 ## Column {data-width="400"}
 
-### Cities with the most FSB recent alumni
+### Cities with the highest number of FSB recent alumni
 
 ```{r,echo=FALSE}
 library(ggplot2)
