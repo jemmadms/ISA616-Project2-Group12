@@ -67,7 +67,7 @@ ggplot(top_10_states, aes(x = reorder(survey_state, -AvgSalary), y = AvgSalary))
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-# City Rank by Job Opportunities {data-orientation="columns"}
+# City Rank by Number of Job Placements {data-orientation="columns"}
 
 ```{r}
 offers_by_city <- df_final %>%
