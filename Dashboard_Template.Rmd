@@ -114,26 +114,25 @@ city_map_df = data.frame(df_final$lng, df_final$lat, df_final$city_state)
 city_map_df = na.omit(city_map_df)
 city_map_sdf = st_as_sf(city_map_df,
                         coords=c("df_final.lng", "df_final.lat"), crs=4326)
-mapview(city_map_sdf, label=city_map_sdf$city_state)
+mapview(city_map_sdf, label=city_map_sdf$city_state, attribution = " ")
 ```
 
 ```{r}
-# ### this doesn't work
-# library(leaflet)
-# 
-# # Create a leaflet map for the top 10 cities
-# m <- leaflet(data = df_final) %>%
-#   addTiles() %>%
-#   setView(lng = -98, lat = 39, zoom = 4) %>%
-#   addCircleMarkers(
-#     radius = 8,
-#     color = "blue",
-#     label = ~city_state,
-#     lat = ~lat,
-#     lng = ~lng,
-#     popup = ~paste("City:", city_state, "<br>Avg Salary:", round(AvgSalary, 2))
-#  )
-# m
+library(leaflet)
+
+# Create a leaflet map for the top 10 cities
+m <- leaflet(data = city_map_df) %>%
+  addTiles() %>%
+  setView(lng = -98, lat = 39, zoom = 4) %>%
+  addCircleMarkers(
+    radius = 8,
+    color = "blue",
+    label = ~df_final.city_state,
+    lat = ~df_final.lat,
+    lng = ~df_final.lng,
+    popup = ~paste("City:", df_final.city_state)
+ )
+m
 ```
 
 # sessionInfo {data-orientation="columns"}

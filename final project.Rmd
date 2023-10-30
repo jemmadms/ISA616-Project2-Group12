@@ -17,7 +17,7 @@ output:
 
 # Project Statement
 
-The purpose of our project is to help Mr. Kirk Bogard raise funds for Farmer School of Business. We will create several graphs and maps to clearly show companies in regions where it is valuable to try to build external relationships. The audience of our project are shared work producers including the team of people who do the same job as Mr. Kirk Bogard, users who need to know how it is done, and how to do it better.
+The purpose of our project is to help Mr. Kirk Bogard, Associate Vice President for Development and External Relations, raise funds for Farmer School of Business. We will create several graphs and maps to clearly show the distribution of FSB recent graduates in the US to indicate where it may be most valuable to try and build external relationships. The audience of our project are shared work producers including Mr. Bogard and his team of people who do the same job as Mr. Kirk Bogard, users who need to know how it is done, and how to do it better.
 
 ![](images/poster%20Value%20proposition%20canvas%20simple%20white.png)
 
@@ -474,11 +474,6 @@ ggplot(top_10_cities, aes(x = reorder(city_state, -Offer_Count), y = Offer_Count
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-```{r}
-missing_values <- df_final[is.na(df_final$lat), ]
-```
-
-
 ## Column {data-width="400"}
 ```{r}
 library(mapview)
@@ -491,22 +486,21 @@ mapview(city_map_sdf, label=city_map_sdf$city_state)
 ```
 
 ```{r}
-# ### this doesn't work
-# library(leaflet)
-# 
-# # Create a leaflet map for the top 10 cities
-# m <- leaflet(data = df_final) %>%
-#   addTiles() %>%
-#   setView(lng = -98, lat = 39, zoom = 4) %>%
-#   addCircleMarkers(
-#     radius = 8,
-#     color = "blue",
-#     label = ~city_state,
-#     lat = ~lat,
-#     lng = ~lng,
-#     popup = ~paste("City:", city_state, "<br>Avg Salary:", round(AvgSalary, 2))
-#  )
-# m
+library(leaflet)
+
+# Create a leaflet map for the top 10 cities
+m <- leaflet(data = city_map_df) %>%
+  addTiles() %>%
+  setView(lng = -98, lat = 39, zoom = 4) %>%
+  addCircleMarkers(
+    radius = 8,
+    color = "blue",
+    label = ~df_final.city_state,
+    lat = ~df_final.lat,
+    lng = ~df_final.lng,
+    popup = ~paste("City:", df_final.city_state)
+ )
+m
 ```
 
 # sessionInfo {data-orientation="columns"}
