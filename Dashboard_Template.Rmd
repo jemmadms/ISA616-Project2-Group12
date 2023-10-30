@@ -96,6 +96,7 @@ ggplot(top_10_cities, aes(x = reorder(city_state, -Offer_Count), y = Offer_Count
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+The bar graph shows which city offers the most job opportunities for Miami's graduation students. As we can see, Chicago and Cincinnati has the highest number of job opportunities. Consequently, it's more valuable for Mr. Kirk to make more effort on building external relationships with companies in these two cities to raise fund.
 
 ```{r}
 missing_values <- df_final[is.na(df_final$lat), ]
