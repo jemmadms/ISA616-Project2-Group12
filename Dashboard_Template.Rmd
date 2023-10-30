@@ -23,25 +23,20 @@ We will summarize the number of students employed by city and rank those cities 
 library(dplyr)
 library(readr)
 library(magrittr)
-
 df <- read.csv('FSB_Survey.csv')
 cities = read.csv('uscities.csv')
 ```
-```{r}
+
+```{r,echo=FALSE}
 df <- df %>% mutate(city_state = paste(survey_city, ", ", survey_state))
 cities <- cities %>% mutate(city_state = toupper(paste(city, ", ", state_id)))
 ```
 
-```{r}
+```{r,echo=FALSE}
 df_final <- left_join(df, cities %>% select(city_state, lat, lng), by = "city_state")
 ```
 
-```{r}
-head(df_final)
-df %>% count(city_state) %>% arrange(desc(n)) %>% head(10)
-```
-
-```{r}
+```{r,echo=FALSE}
 grouped_data <- df %>%
   group_by(survey_state) %>% 
   summarize(AvgSalary = mean(survey_salary),
@@ -52,7 +47,7 @@ grouped_data <- df %>%
 
 ## Column {data-width="400"}
 
-### Add Bar Charts and/or Scatterplot Map to show Highest Region/State
+### Top Ten Highest Average Salary by State
 
 ```{r,echo=FALSE}
 library(ggplot2)
@@ -86,7 +81,7 @@ ranked_offers <- offers_by_city %>%
 
 ## Column {data-width="400"}
 
-### Add Bar Charts
+### Cities with the most FSB recent alumni
 
 ```{r,echo=FALSE}
 library(ggplot2)
@@ -108,13 +103,8 @@ missing_values <- df_final[is.na(df_final$lat), ]
 
 ## Column {data-width="400"}
 ```{r}
-library(mapview)
-library(sf)
 city_map_df = data.frame(df_final$lng, df_final$lat, df_final$city_state)
 city_map_df = na.omit(city_map_df)
-city_map_sdf = st_as_sf(city_map_df,
-                        coords=c("df_final.lng", "df_final.lat"), crs=4326)
-mapview(city_map_sdf, label=city_map_sdf$city_state, attribution = " ")
 ```
 
 ```{r}
@@ -135,7 +125,7 @@ m <- leaflet(data = city_map_df) %>%
 m
 ```
 
-# sessionInfo {data-orientation="columns"}
+# Session Info {data-orientation="columns"}
 
 ```{r}
 sessionInfo()
